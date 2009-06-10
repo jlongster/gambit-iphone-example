@@ -1,0 +1,5 @@
+*.o1
+gl*.c
+init*.c
+build
+tosser.app
