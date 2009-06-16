@@ -39,8 +39,8 @@
 }
 
 @property NSTimeInterval animationInterval;
-@property (nonatomic, retain) UILabel *label;                           
-
+@property (nonatomic, retain) UILabel *label;
+                              
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)drawView;

@@ -1,23 +1,67 @@
 
+;;; config
+
+(define vertices
+  (vector->GLfloat* (vector -.05 -.05
+                            .05  -.05
+                            -.05  .05
+                            .05   .05)))
+
+;; You can use this to play around with per-vertex colors,
+;; works fine if you uncomment the code in SELECT-BOX
+;; (define colors
+;;   (vector->GLubyte* (vector 255 255 0   255
+;;                             0   255 255 255
+;;                             0   0   0   0
+;;                             255 0   255 255)))
+
+(define num-boxes 100)
+(define zoom-level 5)
+(define rotate-speed 2)
+
+;;; init
+
+(define (init)
+  (void))
+
+;;; rendering
+
+(define (select-box)
+  (glVertexPointer 2 GL_FLOAT 0 vertices)
+  (glEnableClientState GL_VERTEX_ARRAY)
+
+  ;; The folowing works too, but you have to uncomment the statement
+  ;; which defines `colors' at the to of this file
+  ;; (glColorPointer 4 GL_UNSIGNED_BYTE 0 colors)
+  ;; (glEnableClientState GL_COLOR_ARRAY)
+  )
+
+(define (draw-box n)
+  (define (ratio n #!optional mult)
+    (let ((r (/ n num-boxes)))
+      (exact->inexact (if mult (* r mult) r))))
+  
+  (define (screen-space f)
+    (+ (/ f 2.) .75))
+  
+  (glLoadIdentity)
+  (glColor4f .2 (ratio n) .5 1.)
+  (glTranslatef (ratio n)
+                (screen-space
+                 (sin (+ (real-time)
+                         (/ n zoom-level))))
+                .0)
+  (glRotatef (* (real-time)
+                (* rotate-speed 100.))
+             0. 0. 1.)
+  (glDrawArrays GL_TRIANGLE_STRIP 0 4))
+
 (define (render)
-  (let ((v (vector->GLfloat* (vector -.5 -.5
-                                     .5  -.5
-                                     -.5  .5
-                                     .5   .5)))
-        (c (vector->GLubyte* (vector 255 255 0   255
-                                     0   255 255 255
-                                     0   0   0   0
-                                     255 0   255 255))))
-    (glVertexPointer 2 GL_FLOAT 0 v)
-    (glColorPointer 4 GL_UNSIGNED_BYTE 0 c)
-    
-    (glEnableClientState GL_VERTEX_ARRAY)
-    (glEnableClientState GL_COLOR_ARRAY)
-    
-    (glDrawArrays GL_TRIANGLE_STRIP 0 4)
-    
-    (free v)
-    (free c)))
+  (select-box)
+  (unfold (lambda (i) (>= i num-boxes))
+          (lambda (i) (draw-box i))
+          (lambda (i) (+ i 1))
+          0))
 
 (define (get-title)
   "Hello, World.  - Gambit")

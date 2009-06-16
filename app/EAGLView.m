@@ -58,30 +58,17 @@
 		}
 		
 		animationInterval = 1.0 / 60.0;
+        init();
+        printf("HERE");
 	}
 	return self;
 }
 
 - (void)drawView {
-    NSString *labelText = [[NSString alloc] initWithCString:get_title()
+    NSString *labelText = [[NSString alloc] initWithCString:(char*)get_title()
                                             encoding: NSASCIIStringEncoding];
     [self.label setText:labelText];
-	
-	// Replace the implementation of this method to do your own custom drawing
-	
-	const GLfloat squareVertices[] = {
-		-0.5f, -0.5f,
-		0.5f,  -0.5f,
-		-0.5f,  0.5f,
-		0.5f,   0.5f,
-	};
-	const GLubyte squareColors[] = {
-		255, 255,   0, 255,
-		0,   255, 255, 255,
-		0,     0,   0,   0,
-		255,   0, 255, 255,
-	};
-	
+		
 	[EAGLContext setCurrentContext:context];
 	
 	glBlendEquationOES(GL_FUNC_SUBTRACT_OES);
@@ -90,10 +77,10 @@
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrthof(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+	glOrthof(0.0f, 1.0f, 1.5f, 0.0f, -1.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
-	glRotatef(3.0f, 0.0f, 0.0f, 1.0f);
-	
+    glLoadIdentity();
+    
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 

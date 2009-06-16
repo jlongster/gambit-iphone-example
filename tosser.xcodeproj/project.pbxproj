@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A4EBE070FDA2069000F4C9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EBE060FDA2069000F4C9F /* main.m */; };
+		1A39F3BD0FE76C5000688B4F /* graphics.o1 in Resources */ = {isa = PBXBuildFile; fileRef = 1A39F3BC0FE76C5000688B4F /* graphics.o1 */; };
+		1A39F3BF0FE76C5C00688B4F /* gl.o1 in Resources */ = {isa = PBXBuildFile; fileRef = 1A39F3BE0FE76C5C00688B4F /* gl.o1 */; };
+		1A39F3C10FE76C6F00688B4F /* srfi-1.o1 in Resources */ = {isa = PBXBuildFile; fileRef = 1A39F3C00FE76C6F00688B4F /* srfi-1.o1 */; };
 		1A4EBE0D0FDA21CD000F4C9F /* init_.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EBE0C0FDA21CD000F4C9F /* init_.c */; };
-		1AA8871B0FD4F076000385C9 /* window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AA8871A0FD4F076000385C9 /* window.xib */; };
 		1AAF6B480FD9A049000698DA /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF6B470FD9A049000698DA /* init.c */; };
-		1ACA2F4C0FD4E826005851FB /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA2F490FD4E826005851FB /* EAGLView.m */; };
-		1ACA2F4D0FD4E826005851FB /* tosserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA2F4B0FD4E826005851FB /* tosserAppDelegate.m */; };
+		1AC6512C0FE70FD1004C15CB /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC651270FE70FD1004C15CB /* EAGLView.m */; };
+		1AC6512D0FE70FD1004C15CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC651280FE70FD1004C15CB /* main.m */; };
+		1AC6512E0FE70FD1004C15CB /* tosserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC6512A0FE70FD1004C15CB /* tosserAppDelegate.m */; };
+		1AC651320FE70FE9004C15CB /* window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AC651300FE70FE9004C15CB /* window.xib */; };
+		1AC651A70FE710DB004C15CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC651A60FE710DB004C15CB /* Info.plist */; };
+		1AC652E50FE71154004C15CB /* cocoa-ffi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC652E40FE71154004C15CB /* cocoa-ffi.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -20,21 +25,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A4EBE060FDA2069000F4C9F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A39F3BC0FE76C5000688B4F /* graphics.o1 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = graphics.o1; path = lib/graphics.o1; sourceTree = "<group>"; };
+		1A39F3BE0FE76C5C00688B4F /* gl.o1 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = gl.o1; path = lib/ffi/gl.o1; sourceTree = "<group>"; };
+		1A39F3C00FE76C6F00688B4F /* srfi-1.o1 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "srfi-1.o1"; path = "lib/util/srfi-1.o1"; sourceTree = "<group>"; };
 		1A4EBE0C0FDA21CD000F4C9F /* init_.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = init_.c; path = lib/init_.c; sourceTree = "<group>"; };
-		1AA8871A0FD4F076000385C9 /* window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = window.xib; sourceTree = "<group>"; };
 		1AAF6B470FD9A049000698DA /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = init.c; path = lib/init.c; sourceTree = "<group>"; };
-		1ACA2F480FD4E826005851FB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
-		1ACA2F490FD4E826005851FB /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
-		1ACA2F4A0FD4E826005851FB /* tosserAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tosserAppDelegate.h; sourceTree = "<group>"; };
-		1ACA2F4B0FD4E826005851FB /* tosserAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tosserAppDelegate.m; sourceTree = "<group>"; };
+		1AC651260FE70FD1004C15CB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = app/EAGLView.h; sourceTree = "<group>"; };
+		1AC651270FE70FD1004C15CB /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = app/EAGLView.m; sourceTree = "<group>"; };
+		1AC651280FE70FD1004C15CB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = app/main.m; sourceTree = "<group>"; };
+		1AC651290FE70FD1004C15CB /* tosserAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tosserAppDelegate.h; path = app/tosserAppDelegate.h; sourceTree = "<group>"; };
+		1AC6512A0FE70FD1004C15CB /* tosserAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tosserAppDelegate.m; path = app/tosserAppDelegate.m; sourceTree = "<group>"; };
+		1AC651300FE70FE9004C15CB /* window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = window.xib; path = app/window.xib; sourceTree = "<group>"; };
+		1AC651A60FE710DB004C15CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AC652E40FE71154004C15CB /* cocoa-ffi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "cocoa-ffi.m"; path = "app/cocoa-ffi.m"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* tosser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tosser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* tosser_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tosser_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,36 +71,23 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1A39F3C00FE76C6F00688B4F /* srfi-1.o1 */,
+				1A39F3BE0FE76C5C00688B4F /* gl.o1 */,
+				1A39F3BC0FE76C5000688B4F /* graphics.o1 */,
+				1AC652E40FE71154004C15CB /* cocoa-ffi.m */,
+				1AC651A60FE710DB004C15CB /* Info.plist */,
+				1AC651300FE70FE9004C15CB /* window.xib */,
+				1AC651260FE70FD1004C15CB /* EAGLView.h */,
+				1AC651270FE70FD1004C15CB /* EAGLView.m */,
+				1AC651280FE70FD1004C15CB /* main.m */,
+				1AC651290FE70FD1004C15CB /* tosserAppDelegate.h */,
+				1AC6512A0FE70FD1004C15CB /* tosserAppDelegate.m */,
 				1A4EBE0C0FDA21CD000F4C9F /* init_.c */,
 				1AAF6B470FD9A049000698DA /* init.c */,
-				1ACA2F480FD4E826005851FB /* EAGLView.h */,
-				1ACA2F490FD4E826005851FB /* EAGLView.m */,
-				1ACA2F4A0FD4E826005851FB /* tosserAppDelegate.h */,
-				1ACA2F4B0FD4E826005851FB /* tosserAppDelegate.m */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				1A4EBE060FDA2069000F4C9F /* main.m */,
-				32CA4F630368D1EE00C91783 /* tosser_Prefix.pch */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				1AA8871A0FD4F076000385C9 /* window.xib */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -148,7 +143,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AA8871B0FD4F076000385C9 /* window.xib in Resources */,
+				1AC651320FE70FE9004C15CB /* window.xib in Resources */,
+				1AC651A70FE710DB004C15CB /* Info.plist in Resources */,
+				1A39F3BD0FE76C5000688B4F /* graphics.o1 in Resources */,
+				1A39F3BF0FE76C5C00688B4F /* gl.o1 in Resources */,
+				1A39F3C10FE76C6F00688B4F /* srfi-1.o1 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,11 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ACA2F4C0FD4E826005851FB /* EAGLView.m in Sources */,
-				1ACA2F4D0FD4E826005851FB /* tosserAppDelegate.m in Sources */,
 				1AAF6B480FD9A049000698DA /* init.c in Sources */,
-				1A4EBE070FDA2069000F4C9F /* main.m in Sources */,
 				1A4EBE0D0FDA21CD000F4C9F /* init_.c in Sources */,
+				1AC6512C0FE70FD1004C15CB /* EAGLView.m in Sources */,
+				1AC6512D0FE70FD1004C15CB /* main.m in Sources */,
+				1AC6512E0FE70FD1004C15CB /* tosserAppDelegate.m in Sources */,
+				1AC652E50FE71154004C15CB /* cocoa-ffi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,19 +200,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: James Long";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-D___LIBRARY";
+				OTHER_CFLAGS = (
+					"-D___LIBRARY",
+					"-x",
+					"objective-c",
+				);
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneSimulator/lib",
+					"-L/usr/local/Gambit-C/iPhoneOS/lib",
 					"-lgambc",
 				);
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DC86F3A4-2D7C-4762-9564-ED77ED9E9152";
 				SDKROOT = iphoneos2.0;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator/include";
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS/include";
 			};
 			name = Debug;
 		};

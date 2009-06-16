@@ -27,17 +27,6 @@
   (c-lambda (GLfloat* int GLfloat) void
             "((GLfloat*)___arg1)[___arg2] = ___arg3;"))
 
-(define GLfloat*-debug
-  (c-lambda (GLfloat* int) void #<<end
-GLfloat* vec = (GLfloat*)___arg1;
-int i;
-for(i=0; i<___arg2; i++) {
-    printf("%f ", vec[i]);
-}
-printf("\n");
-end
-))
-
 (define (vector->GLfloat* vec)
   (let* ((length (vector-length vec))
          (buf (make-GLfloat* length)))
@@ -65,9 +54,6 @@ end
 (define make-GLubyte*
   (c-lambda (int) GLubyte*
             "___result_voidstar = malloc(___arg1*sizeof(GLubyte));"))
-
-(define GLubyte-print-size
-  (c-lambda () void "printf(\"%d\", sizeof(GLubyte)); "))
 
 (define GLubyte*-ref
   (c-lambda (GLubyte* int) GLubyte
@@ -503,6 +489,10 @@ end
 (define glEnableClientState (c-lambda (GLenum) void "glEnableClientState"))
 (define glDrawArrays (c-lambda (GLenum GLint GLsizei) void "glDrawArrays"))
 
+(define glColor4f (c-lambda (GLfloat GLfloat GLfloat GLfloat) void "glColor4f"))
+
+(define glLoadIdentity (c-lambda () void "glLoadIdentity"))
+
 ;;; definitions generated from opengl, NOT opengl es, some of these work
 ;; (define glBindTexture (c-lambda (GLenum GLuint) void "glBindTexture"))
 ;; (define glBitmap (c-lambda (GLsizei GLsizei GLfloat GLfloat GLfloat GLfloat (pointer GLubyte)) void "glBitmap"))
@@ -655,7 +645,6 @@ end
 ;; (define glLineStipple (c-lambda (GLint GLushort) void "glLineStipple"))
 ;; (define glLineWidth (c-lambda (GLfloat) void "glLineWidth"))
 ;; (define glListBase (c-lambda (GLuint) void "glListBase"))
-;; (define glLoadIdentity (c-lambda () void "glLoadIdentity"))
 ;; (define glLoadMatrixd (c-lambda ((pointer GLfloat)) void "glLoadMatrixd"))
 ;; (define glLoadMatrixf (c-lambda ((pointer GLfloat)) void "glLoadMatrixf"))
 ;; (define glLoadName (c-lambda (GLuint) void "glLoadName"))
