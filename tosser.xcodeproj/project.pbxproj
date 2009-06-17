@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A39F3BD0FE76C5000688B4F /* graphics.o1 in Resources */ = {isa = PBXBuildFile; fileRef = 1A39F3BC0FE76C5000688B4F /* graphics.o1 */; };
-		1A39F3BF0FE76C5C00688B4F /* gl.o1 in Resources */ = {isa = PBXBuildFile; fileRef = 1A39F3BE0FE76C5C00688B4F /* gl.o1 */; };
-		1A39F3C10FE76C6F00688B4F /* srfi-1.o1 in Resources */ = {isa = PBXBuildFile; fileRef = 1A39F3C00FE76C6F00688B4F /* srfi-1.o1 */; };
 		1A4EBE0D0FDA21CD000F4C9F /* init_.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EBE0C0FDA21CD000F4C9F /* init_.c */; };
 		1AAF6B480FD9A049000698DA /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF6B470FD9A049000698DA /* init.c */; };
 		1AC6512C0FE70FD1004C15CB /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC651270FE70FD1004C15CB /* EAGLView.m */; };
@@ -25,9 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A39F3BC0FE76C5000688B4F /* graphics.o1 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = graphics.o1; path = lib/graphics.o1; sourceTree = "<group>"; };
-		1A39F3BE0FE76C5C00688B4F /* gl.o1 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = gl.o1; path = lib/ffi/gl.o1; sourceTree = "<group>"; };
-		1A39F3C00FE76C6F00688B4F /* srfi-1.o1 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = "srfi-1.o1"; path = "lib/util/srfi-1.o1"; sourceTree = "<group>"; };
 		1A4EBE0C0FDA21CD000F4C9F /* init_.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = init_.c; path = lib/init_.c; sourceTree = "<group>"; };
 		1AAF6B470FD9A049000698DA /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = init.c; path = lib/init.c; sourceTree = "<group>"; };
 		1AC651260FE70FD1004C15CB /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = app/EAGLView.h; sourceTree = "<group>"; };
@@ -71,9 +65,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1A39F3C00FE76C6F00688B4F /* srfi-1.o1 */,
-				1A39F3BE0FE76C5C00688B4F /* gl.o1 */,
-				1A39F3BC0FE76C5000688B4F /* graphics.o1 */,
 				1AC652E40FE71154004C15CB /* cocoa-ffi.m */,
 				1AC651A60FE710DB004C15CB /* Info.plist */,
 				1AC651300FE70FE9004C15CB /* window.xib */,
@@ -145,9 +136,6 @@
 			files = (
 				1AC651320FE70FE9004C15CB /* window.xib in Resources */,
 				1AC651A70FE710DB004C15CB /* Info.plist in Resources */,
-				1A39F3BD0FE76C5000688B4F /* graphics.o1 in Resources */,
-				1A39F3BF0FE76C5C00688B4F /* gl.o1 in Resources */,
-				1A39F3C10FE76C6F00688B4F /* srfi-1.o1 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +168,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = tosser_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/Gambit-C/iPhoneOS/lib",
+					"-lgambc",
+				);
 				PRODUCT_NAME = tosser;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS/include";
 			};
 			name = Debug;
 		};

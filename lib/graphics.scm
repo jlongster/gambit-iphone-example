@@ -64,4 +64,4 @@
           0))
 
 (define (get-title)
-  "Hello, World.  - Gambit")
+  "Hello, World.  - Gambit Scheme")
