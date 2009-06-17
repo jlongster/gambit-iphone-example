@@ -1,5 +1,5 @@
 
-;;; config
+;;;; config
 
 (define vertices
   (vector->GLfloat* (vector -.05 -.05
@@ -19,7 +19,7 @@
 (define zoom-level 5)
 (define rotate-speed 2)
 
-;;; rendering
+;;;; rendering
 
 (define (select-box)
   (glVertexPointer 2 GL_FLOAT 0 vertices)

@@ -2,7 +2,7 @@
 ;;; Pulls together all of the modules for our system and provides a C
 ;;; interface for the outside world.
 
-;;; dependencies
+;;;; dependencies
 
 (include "resource.scm")
 
@@ -14,7 +14,7 @@
 ;; (load (resource "lib/ffi/gl"))
 ;; (load (resource "lib/graphics"))
 
-;;; c interface
+;;;; c interface
 
 (c-define (c-render) () void "render" ""
   (render))
