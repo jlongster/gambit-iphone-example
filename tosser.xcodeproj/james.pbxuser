@@ -1,17 +1,5 @@
 // !$*UTF8*$!
 {
-	1A0E29310FE778FB000419B4 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 1AC651A60FE710DB004C15CB /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			CFBundleIconFile,
-		);
-		name = "/Users/james/projects/scheme/sandbox/iphone-with-embedded-main/Info.plist";
-		rLen = 0;
-		rLoc = 2147483647;
-	};
 	1A39F32E0FE7625900688B4F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1AC651280FE70FD1004C15CB /* main.m */;
@@ -32,6 +20,27 @@
 		vrLen = 733;
 		vrLoc = 1374;
 	};
+	1A56AE100FE8AD0F007D927A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/james/projects/scheme/sandbox/iphone-with-embedded-main/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	1A56AE4D0FE8D206007D927A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1AC651260FE70FD1004C15CB /* EAGLView.h */;
+		name = "EAGLView.h: 9";
+		rLen = 0;
+		rLoc = 129;
+		rType = 0;
+		vrLen = 944;
+		vrLoc = 0;
+	};
 	1AA887630FD64FDD000385C9 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
@@ -49,6 +58,23 @@
 			sepNavIntBoundsRect = "{{0, 0}, {769, 16660}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 316}";
+		};
+	};
+	1AB14B910FE8D86900C51BB8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1AC651260FE70FD1004C15CB /* EAGLView.h */;
+		name = "EAGLView.h: 9";
+		rLen = 0;
+		rLoc = 129;
+		rType = 0;
+		vrLen = 944;
+		vrLoc = 0;
+	};
+	1AC651260FE70FD1004C15CB /* EAGLView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {769, 658}}";
+			sepNavSelRange = "{129, 0}";
+			sepNavVisRange = "{0, 944}";
 		};
 	};
 	1AC651280FE70FD1004C15CB /* main.m */ = {
@@ -89,13 +115,6 @@
 		vrLen = 898;
 		vrLoc = 8037;
 	};
-	1AC652E40FE71154004C15CB /* cocoa-ffi.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {769, 450}}";
-			sepNavSelRange = "{1, 0}";
-			sepNavVisRange = "{0, 1}";
-		};
-	};
 	1AC652F10FE711BA004C15CB /* EAGLView.m */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.objc;
@@ -122,26 +141,6 @@
 		rType = 0;
 		vrLen = 834;
 		vrLoc = 1197;
-	};
-	1AC6536B0FE72B68004C15CB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1AC652E40FE71154004C15CB /* cocoa-ffi.m */;
-		name = "cocoa-ffi.m: 2";
-		rLen = 0;
-		rLoc = 1;
-		rType = 0;
-		vrLen = 1;
-		vrLoc = 0;
-	};
-	1AC6536E0FE72B68004C15CB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1AC652E40FE71154004C15CB /* cocoa-ffi.m */;
-		name = "cocoa-ffi.m: 2";
-		rLen = 0;
-		rLoc = 1;
-		rType = 0;
-		vrLen = 1;
-		vrLoc = 0;
 	};
 	1AC6536F0FE72B68004C15CB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -217,18 +216,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	1ACD12AA0FE80D9500BD2FA1 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 1AC651A60FE710DB004C15CB /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			CFBundleIconFile,
-		);
-		name = "/Users/james/projects/scheme/sandbox/iphone-with-embedded-main/Info.plist";
-		rLen = 0;
-		rLoc = 2147483647;
-	};
 	1D6058900D05DD3D006BFB54 /* tosser */ = {
 		activeExec = 0;
 		executables = (
@@ -254,7 +241,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					459,
-					322,
+					322.20849609375,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXErrorsWarningsDataSource_TypeID,
@@ -306,23 +293,22 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 266904337;
-			PBXWorkspaceStateSaveDate = 266904337;
+			PBXPerProjectTemplateStateSaveDate = 266917443;
+			PBXWorkspaceStateSaveDate = 266917443;
 		};
 		perUserProjectItems = {
-			1A0E29310FE778FB000419B4 = 1A0E29310FE778FB000419B4 /* PlistBookmark */;
-			1A39F32E0FE7625900688B4F = 1A39F32E0FE7625900688B4F /* PBXTextBookmark */;
-			1A39F34D0FE7643E00688B4F = 1A39F34D0FE7643E00688B4F /* PBXTextBookmark */;
-			1AA887630FD64FDD000385C9 = 1AA887630FD64FDD000385C9 /* PlistBookmark */;
-			1AC6519E0FE7107C004C15CB = 1AC6519E0FE7107C004C15CB /* PBXTextBookmark */;
-			1AC652FC0FE712BB004C15CB = 1AC652FC0FE712BB004C15CB /* PBXTextBookmark */;
-			1AC653620FE7295D004C15CB = 1AC653620FE7295D004C15CB /* PBXTextBookmark */;
-			1AC6536B0FE72B68004C15CB = 1AC6536B0FE72B68004C15CB /* PBXTextBookmark */;
-			1AC6536E0FE72B68004C15CB = 1AC6536E0FE72B68004C15CB /* PBXTextBookmark */;
-			1AC6536F0FE72B68004C15CB = 1AC6536F0FE72B68004C15CB /* PBXTextBookmark */;
-			1AC6538C0FE73304004C15CB = 1AC6538C0FE73304004C15CB /* PBXTextBookmark */;
-			1AC6538E0FE73304004C15CB = 1AC6538E0FE73304004C15CB /* PBXTextBookmark */;
-			1ACD12AA0FE80D9500BD2FA1 = 1ACD12AA0FE80D9500BD2FA1 /* PlistBookmark */;
+			1A39F32E0FE7625900688B4F /* PBXTextBookmark */ = 1A39F32E0FE7625900688B4F /* PBXTextBookmark */;
+			1A39F34D0FE7643E00688B4F /* PBXTextBookmark */ = 1A39F34D0FE7643E00688B4F /* PBXTextBookmark */;
+			1A56AE100FE8AD0F007D927A /* PlistBookmark */ = 1A56AE100FE8AD0F007D927A /* PlistBookmark */;
+			1A56AE4D0FE8D206007D927A /* PBXTextBookmark */ = 1A56AE4D0FE8D206007D927A /* PBXTextBookmark */;
+			1AA887630FD64FDD000385C9 /* PlistBookmark */ = 1AA887630FD64FDD000385C9 /* PlistBookmark */;
+			1AB14B910FE8D86900C51BB8 /* PBXTextBookmark */ = 1AB14B910FE8D86900C51BB8 /* PBXTextBookmark */;
+			1AC6519E0FE7107C004C15CB /* PBXTextBookmark */ = 1AC6519E0FE7107C004C15CB /* PBXTextBookmark */;
+			1AC652FC0FE712BB004C15CB /* PBXTextBookmark */ = 1AC652FC0FE712BB004C15CB /* PBXTextBookmark */;
+			1AC653620FE7295D004C15CB /* PBXTextBookmark */ = 1AC653620FE7295D004C15CB /* PBXTextBookmark */;
+			1AC6536F0FE72B68004C15CB /* PBXTextBookmark */ = 1AC6536F0FE72B68004C15CB /* PBXTextBookmark */;
+			1AC6538C0FE73304004C15CB /* PBXTextBookmark */ = 1AC6538C0FE73304004C15CB /* PBXTextBookmark */;
+			1AC6538E0FE73304004C15CB /* PBXTextBookmark */ = 1AC6538E0FE73304004C15CB /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1ACA2F450FD4E803005851FB /* Source Control */;
 		userBuildSettings = {

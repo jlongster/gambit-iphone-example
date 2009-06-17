@@ -14,7 +14,6 @@
 		1AC6512E0FE70FD1004C15CB /* tosserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC6512A0FE70FD1004C15CB /* tosserAppDelegate.m */; };
 		1AC651320FE70FE9004C15CB /* window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AC651300FE70FE9004C15CB /* window.xib */; };
 		1AC651A70FE710DB004C15CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC651A60FE710DB004C15CB /* Info.plist */; };
-		1AC652E50FE71154004C15CB /* cocoa-ffi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC652E40FE71154004C15CB /* cocoa-ffi.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -31,7 +30,6 @@
 		1AC6512A0FE70FD1004C15CB /* tosserAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tosserAppDelegate.m; path = app/tosserAppDelegate.m; sourceTree = "<group>"; };
 		1AC651300FE70FE9004C15CB /* window.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = window.xib; path = app/window.xib; sourceTree = "<group>"; };
 		1AC651A60FE710DB004C15CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1AC652E40FE71154004C15CB /* cocoa-ffi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "cocoa-ffi.m"; path = "app/cocoa-ffi.m"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* tosser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tosser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -65,7 +63,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1AC652E40FE71154004C15CB /* cocoa-ffi.m */,
 				1AC651A60FE710DB004C15CB /* Info.plist */,
 				1AC651300FE70FE9004C15CB /* window.xib */,
 				1AC651260FE70FD1004C15CB /* EAGLView.h */,
@@ -151,7 +148,6 @@
 				1AC6512C0FE70FD1004C15CB /* EAGLView.m in Sources */,
 				1AC6512D0FE70FD1004C15CB /* main.m in Sources */,
 				1AC6512E0FE70FD1004C15CB /* tosserAppDelegate.m in Sources */,
-				1AC652E50FE71154004C15CB /* cocoa-ffi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,11 +165,12 @@
 				GCC_PREFIX_HEADER = tosser_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneOS/lib",
+					"-L/usr/local/Gambit-C/iPhoneSimulator/lib",
 					"-lgambc",
 				);
 				PRODUCT_NAME = tosser;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS/include";
+				SDKROOT = iphonesimulator2.0;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator/include";
 			};
 			name = Debug;
 		};
@@ -204,13 +201,13 @@
 					"objective-c",
 				);
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneOS/lib",
+					"-L/usr/local/Gambit-C/iPhoneSimulator/lib",
 					"-lgambc",
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DC86F3A4-2D7C-4762-9564-ED77ED9E9152";
-				SDKROOT = iphoneos2.0;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS/include";
+				SDKROOT = iphonesimulator2.0;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator/include";
 			};
 			name = Debug;
 		};

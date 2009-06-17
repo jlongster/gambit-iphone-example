@@ -19,11 +19,6 @@
 (define zoom-level 5)
 (define rotate-speed 2)
 
-;;; init
-
-(define (init)
-  (void))
-
 ;;; rendering
 
 (define (select-box)

@@ -16,9 +16,6 @@
 
 ;;; c interface
 
-(c-define (c-init) () void "init" ""
-  (init))
-
 (c-define (c-render) () void "render" ""
   (render))
 

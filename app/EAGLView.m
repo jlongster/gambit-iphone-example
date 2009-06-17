@@ -58,8 +58,6 @@
 		}
 		
 		animationInterval = 1.0 / 60.0;
-        init();
-        printf("HERE");
 	}
 	return self;
 }
