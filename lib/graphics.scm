@@ -26,7 +26,7 @@
   (glEnableClientState GL_VERTEX_ARRAY)
 
   ;; The folowing works too, but you have to uncomment the statement
-  ;; which defines `colors' at the to of this file
+  ;; which defines `colors' at the top of this file
   ;; (glColorPointer 4 GL_UNSIGNED_BYTE 0 colors)
   ;; (glEnableClientState GL_COLOR_ARRAY)
   )
@@ -35,10 +35,10 @@
   (define (ratio n #!optional mult)
     (let ((r (/ n num-boxes)))
       (exact->inexact (if mult (* r mult) r))))
-  
+
   (define (screen-space f)
     (+ (/ f 2.) .75))
-  
+
   (glLoadIdentity)
   (glColor4f .2 (ratio n) .5 1.)
   (glTranslatef (ratio n)

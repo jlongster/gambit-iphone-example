@@ -11,10 +11,14 @@ gsc=/usr/local/Gambit-C/iPhoneSimulator/bin/gsc
 
 #### Main
 
-all: lib/init_.c
+all: lib/init_.c config
 
 lib/init_.c: lib/init.scm lib/ffi/gl.scm lib/util/srfi-1.scm lib/graphics.scm
 	cd lib && $(gsc) -debug -link init.scm
+
+config:
+	echo '(define root "$(CURDIR)")' > lib/config.scm
+
 
 #### UNUSED
 ### The following sections are UNUSED unless you want to play around
@@ -49,8 +53,7 @@ deploy_path=~/Library/'Application Support/iPhone Simulator'/User/Applications/$
 gcc=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1
 sdk=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk
 
-tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c
-	echo '(define root "$(CURDIR)")' > lib/config.scm
+tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c config
 
 	mkdir -p $(app_name)
 	cp Info.plist $(app_name)

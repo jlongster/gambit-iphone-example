@@ -1,0 +1,28 @@
+You need to run this example in Mac OS X, from 2 xterms.
+
+In xterm #1 start the debugger by entering:
+
+% gsi -:dar,h10000 debugger.scm
+
+In xterm #2 start the debuggee by entering:
+
+% gsi -:dar,h10000 debuggee.scm
+
+This will pop up a new xterm (#3) which has the main Gambit REPL.
+
+In xterm #3 you can try to evaluate expressions, and errors.  If the
+error is in a different thread then a new xterm will pop up for that
+thread's REPL.  For example:
+
+Gambit v4.2.8
+
+> (expt 2 100)
+1267650600228229401496703205376
+> (+ 1 xx)
+*** ERROR IN (console)@2.6 -- Unbound variable: xx
+1> (thread-start! (make-thread (lambda () (* 2 yy))))
+#<thread #2>
+1> 
+
+The opening of a window for new REPLs is meant to model the IDE which will
+create a new tab, a new error list item, etc

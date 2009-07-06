@@ -2,6 +2,17 @@
 ;;; Pulls together all of the modules for our system and provides a C
 ;;; interface for the outside world.
 
+;;;; debugger
+
+(include "util/remote-debugger/debuggee.scm")
+(rdi-set-host! "localhost:20000")
+
+(thread-start!
+ (make-thread
+  (lambda () (##repl-debug-main))))
+
+(thread-sleep! 1)
+
 ;;;; dependencies
 
 (include "resource.scm")

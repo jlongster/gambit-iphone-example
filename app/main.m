@@ -23,15 +23,28 @@ ___setup_params_struct setup_params;
 int main(int argc, char *argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
-    // Taken from gambit, lib/main.c. Force repl io to be stdin/stdout
-    // since terminal isn't attached
+    // Taken from gambit, lib/main.c. 
     int debug_settings = ___DEBUG_SETTINGS_INITIAL;
+    // -:d- (force repl io to be stdin/stdout since terminal isn't
+    // -attached)
     debug_settings =
         (debug_settings
          & ~___DEBUG_SETTINGS_REPL_MASK)
         | (___DEBUG_SETTINGS_REPL_STDIO
            << ___DEBUG_SETTINGS_REPL_SHIFT);
-
+    // -:da
+    debug_settings =
+        (debug_settings
+         & ~___DEBUG_SETTINGS_UNCAUGHT_MASK)
+        | (___DEBUG_SETTINGS_UNCAUGHT_ALL
+           << ___DEBUG_SETTINGS_UNCAUGHT_SHIFT);
+    // -:dr
+    debug_settings =
+        (debug_settings
+         & ~___DEBUG_SETTINGS_ERROR_MASK)
+        | (___DEBUG_SETTINGS_ERROR_REPL
+           << ___DEBUG_SETTINGS_ERROR_SHIFT);
+    
     ___setup_params_reset (&setup_params);
 	setup_params.version = ___VERSION;
 	setup_params.linker = LINKER;
