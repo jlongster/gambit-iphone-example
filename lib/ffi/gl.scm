@@ -480,6 +480,9 @@
 
 ;;; gl functions
 
+(define glEnable (c-lambda (GLenum) void "glEnable"))
+(define glBlendFunc (c-lambda (GLenum GLenum) void "glBlendFunc"))
+
 (define glTranslatef (c-lambda (GLfloat GLfloat GLfloat) void "glTranslatef"))
 (define glRotatef (c-lambda (GLfloat GLfloat GLfloat GLfloat) void "glRotatef"))
 (define glScalef (c-lambda (GLfloat GLfloat GLfloat) void "glScalef"))
@@ -499,7 +502,6 @@
 ;; (define glBlendColor (c-lambda (GLclampf GLclampf GLclampf GLclampf) void "glBlendColor"))
 ;; (define glBlendEquation (c-lambda (GLenum) void "glBlendEquation"))
 ;; (define glBlendEquationSeparate (c-lambda (GLenum GLenum) void "glBlendEquationSeparate"))
-;; (define glBlendFunc (c-lambda (GLenum GLenum) void "glBlendFunc"))
 ;; (define glCallList (c-lambda (GLuint) void "glCallList"))
 ;; (define glCallLists (c-lambda (GLsizei GLenum (pointer GLvoid)) void "glCallLists"))
 ;; (define glClear (c-lambda (GLbitfield) void "glClear"))
@@ -547,7 +549,6 @@
 ;; (define glEdgeFlag (c-lambda (GLboolean) void "glEdgeFlag"))
 ;; (define glEdgeFlagPointer (c-lambda (GLsizei (pointer GLvoid)) void "glEdgeFlagPointer"))
 ;; (define glEdgeFlagv (c-lambda ((pointer GLboolean)) void "glEdgeFlagv"))
-;; (define glEnable (c-lambda (GLenum) void "glEnable"))
 ;; (define glEnableClientState (c-lambda (GLenum) void "glEnableClientState"))
 ;; (define glEndList (c-lambda () void "glEndList"))
 ;; (define glEvalCoord1d (c-lambda (GLfloat) void "glEvalCoord1d"))

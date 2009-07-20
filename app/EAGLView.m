@@ -58,9 +58,47 @@
 		}
 		
 		animationInterval = 1.0 / 60.0;
+
+        register_view(self);
+        init();
+        [self initAccelerometer];
 	}
 	return self;
 }
+
+//// Accelerometer
+
+- (void)initAccelerometer {
+	UIAccelerometer* theAccelerometer = [UIAccelerometer sharedAccelerometer];
+	theAccelerometer.updateInterval = 1/50.0;
+	theAccelerometer.delegate = self;
+}
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer
+		didAccelerate:(UIAcceleration *)acceleration {
+	did_accelerate(accelerometer, acceleration);
+}
+                       
+
+//// Touches
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    touches_began(touches, event);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    touches_moved(touches, event);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    touches_ended(touches, event);
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    touches_cancelled(touches, event);
+}
+
+//// Rendering
 
 - (void)drawView {
     NSString *labelText = [[NSString alloc] initWithCString:(char*)get_title()
@@ -69,13 +107,12 @@
 		
 	[EAGLContext setCurrentContext:context];
 	
-	glBlendEquationOES(GL_FUNC_SUBTRACT_OES);
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	glViewport(0, 0, backingWidth, backingHeight);
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrthof(0.0f, 1.0f, 1.5f, 0.0f, -1.0f, 1.0f);
+	glOrthof(0.0f, 1.0f, 1.0f, 0.0f, -1.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     
