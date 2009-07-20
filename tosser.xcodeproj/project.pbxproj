@@ -154,6 +154,57 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		1ABC50B2101254C200811E0D /* Debug iPhone */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: James Long";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-D___LIBRARY",
+					"-x",
+					"objective-c",
+					"-Wno-unused",
+					"-fno-math-errno",
+					"-fschedule-insns2",
+					"-fno-trapping-math",
+					"-fno-strict-aliasing",
+					"-fwrapv",
+					"-fmodulo-sched",
+					"-freschedule-modulo-scheduled-loops",
+					"-fno-common",
+				);
+				OTHER_LDFLAGS = (
+					"-L/usr/local/Gambit-C/iPhoneOS3.0/lib",
+					"-lgambc",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.0;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS3.0/include";
+			};
+			name = "Debug iPhone";
+		};
+		1ABC50B3101254C200811E0D /* Debug iPhone */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = tosser_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = tosser;
+			};
+			name = "Debug iPhone";
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -165,12 +216,13 @@
 				GCC_PREFIX_HEADER = tosser_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneSimulator/lib",
+					"-L/usr/local/Gambit-C/iPhoneSimulator3.0/lib",
 					"-lgambc",
 				);
 				PRODUCT_NAME = tosser;
-				SDKROOT = iphonesimulator2.0;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator/include";
+				SDKROOT = iphonesimulator3.0;
+				"SDKROOT[arch=*]" = iphonesimulator3.0;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator3.0/include";
 			};
 			name = Debug;
 		};
@@ -190,7 +242,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: James Long";
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = NO;
@@ -200,7 +254,6 @@
 					"-x",
 					"objective-c",
 					"-Wno-unused",
-					"-O1",
 					"-fno-math-errno",
 					"-fschedule-insns2",
 					"-fno-trapping-math",
@@ -210,16 +263,15 @@
 					"-freschedule-modulo-scheduled-loops",
 					"-fomit-frame-pointer",
 					"-fno-common",
-					"-mieee-fp",
 				);
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneSimulator/lib",
+					"-L/usr/local/Gambit-C/iPhoneSimulator3.0/lib",
 					"-lgambc",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DC86F3A4-2D7C-4762-9564-ED77ED9E9152";
-				SDKROOT = iphonesimulator2.0;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator/include";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphonesimulator3.0;
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator3.0/include";
 			};
 			name = Debug;
 		};
@@ -243,6 +295,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				1ABC50B3101254C200811E0D /* Debug iPhone */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -252,6 +305,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				1ABC50B2101254C200811E0D /* Debug iPhone */,
 				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
