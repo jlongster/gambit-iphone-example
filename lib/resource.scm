@@ -7,19 +7,8 @@
 ;;; our resources like Xcode, which is annoying, so we choose the
 ;;; latter.
 
-(c-declare "#import <UIKit/UIKit.h>")
-
 (include "config.scm")
 
-;; Unused for now, but it seems like this might be useful later.
-(define get-resource-path
-  (c-lambda () char-string #<<end-c-code
-   NSString *path = [[NSBundle mainBundle] resourcePath];
-   char* buf = malloc(1024*sizeof(char));
-   [path getCString:buf maxLength:1024 encoding:NSASCIIStringEncoding];
-   ___result = buf;
-end-c-code
-))
-
 (define (resource path)
-  (string-append root "/" path))
+  (let ((base (NSBundle-resource-path (NSBundle-main-bundle))))
+    (string-append base "/" path)))

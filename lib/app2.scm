@@ -1,6 +1,4 @@
 
-(include "events.scm")
-
 ;;;; settings
 
 (define AGE_OF_DEATH 1.) ; in seconds
@@ -120,4 +118,4 @@
   (##gc))
 
 (define (get-title)
-  "Touch me. - Gambit Scheme")
+  (number->string (real-time)))

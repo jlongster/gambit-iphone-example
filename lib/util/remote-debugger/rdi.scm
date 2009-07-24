@@ -120,21 +120,21 @@
          (open-tcp-server
           (list port-number: (rdi-port-num rdi)
                 reuse-address: #t))))
-    (let ((connection
-           (read listen-port)))
-      (close-port listen-port)
-      (let ((request (read connection)))
-        (if (not (equal? request rdi-version1))
-            (error "unexpected debuggee version")
-            (begin
+    (let loop ()
+      (let ((connection
+             (read listen-port)))
+        (let ((request (read connection)))
+          (if (not (equal? request rdi-version1))
+              (error "unexpected debuggee version")
+              (begin
 
-              (write rdi-version2 connection)
-              (force-output connection)
+                (write rdi-version2 connection)
+                (force-output connection)
 
-              (let ((reader-thread (rdi-create-reader-thread rdi connection)))
-                (rdi-connection-set! rdi connection)
-                (thread-start! reader-thread)
-                connection)))))))
+                (let ((reader-thread (rdi-create-reader-thread rdi connection)))
+                  (rdi-connection-set! rdi connection)
+                  (thread-start! reader-thread)
+                  (loop)))))))))
 
 (define (rdi-create-reader-thread rdi connection)
   (make-thread

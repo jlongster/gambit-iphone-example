@@ -9,6 +9,10 @@
 (c-define-type NSArray* (pointer NSArray))
 (c-define-type NSSet "NSSet")
 (c-define-type NSSet* (pointer NSSet))
+(c-define-type NSString "NSString")
+(c-define-type NSString* (pointer "NSString"))
+(c-define-type NSBundle "NSBundle")
+(c-define-type NSBundle* (pointer NSBundle))
 
 ;;;; Quartz
 

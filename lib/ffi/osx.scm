@@ -36,6 +36,28 @@ end-c-code
 (define (NSSet->list set)
   (NSArray->list (NSSet->NSArray set)))
 
+;;;;; NSString
+
+(define NSString-get-ascii-c-string
+  (c-lambda (NSString*) char-string #<<end-c-code
+   char buf[1024];
+   [___arg1 getCString:buf maxLength:1024 encoding:NSASCIIStringEncoding];
+   ___result = buf;
+end-c-code
+))
+
+;;;;; NSBundle
+
+(define NSBundle-main-bundle
+  (c-lambda () NSBundle* "___result_voidstar = [NSBundle mainBundle];"))
+
+(define %%NSBundle-resource-path
+  (c-lambda (NSBundle*) NSString* "___result_voidstar = [___arg1 resourcePath];"))
+
+(define (NSBundle-resource-path bundle)
+  (NSString-get-ascii-c-string (%%NSBundle-resource-path bundle)))
+
+
 ;;;; Quartz
 
 ;;;;; CGPoint

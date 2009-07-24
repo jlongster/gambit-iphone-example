@@ -51,6 +51,9 @@
              0. 0. 1.)
   (glDrawArrays GL_TRIANGLE_STRIP 0 4))
 
+(define (init)
+  (void))
+
 (define (render)
   (select-box)
   (unfold (lambda (i) (>= i num-boxes))

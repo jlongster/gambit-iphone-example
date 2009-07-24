@@ -13,7 +13,7 @@ gsc=/usr/local/Gambit-C/iPhoneSimulator3.0/bin/gsc
 
 all: lib/init_.c config
 
-lib/init_.c: lib/init.scm lib/ffi/gl.scm lib/util/srfi-1.scm 
+lib/init_.c: lib/init.scm lib/ffi/gl.scm lib/util/srfi-1.scm lib/app3.scm
 	cd lib && $(gsc) -link init.scm
 
 config:
@@ -43,18 +43,17 @@ lib/graphics.o1: lib/graphics.scm
 #### Making tosser.app
 ### These are here for manual compilation and deployment of the app
 
-app_name=tosser.app # You'll probably have to customize some of these
+app_name=tosser.app
 exe_name=tosser
-uuid=9FFDAE3F-F890-4A5E-AC14-4EB462A3AE1A
+uuid=ECCD22EF-BCFD-41D0-8811-951E3EE21250
 deploy_path=~/Library/'Application Support/iPhone Simulator'/User/Applications/$(uuid)
 
-## gcc=/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.0
-## sdk=/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk
-gcc=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1
-sdk=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk
+gcc=/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2
+sdk=/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk
+# gcc=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1
+# sdk=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk
 
 tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c config
-
 	mkdir -p $(app_name)
 	cp Info.plist $(app_name)
 	ibtool --errors --warnings --notices \
@@ -62,15 +61,18 @@ tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c config
 		--compile $(app_name)/window.nib \
 		app/window.xib
 
-	$(gcc) -x objective-c -isysroot $(sdk) \
+	$(gcc) -x objective-c -arch i386 -isysroot $(sdk) \
+	-D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
 	-framework Foundation -framework UIKit \
 	-framework OpenGLES -framework QuartzCore \
 	-fvisibility=hidden -I/usr/local/include -D___LIBRARY -lgambc \
-    -I/usr/local/Gambit-C/iPhoneSimulator/include \
-    -L/usr/local/Gambit-C/iPhoneSimulator/lib \
+    -I/usr/local/Gambit-C/iPhoneSimulator3.0/include \
+    -L/usr/local/Gambit-C/iPhoneSimulator3.0/lib \
 	app/EAGLView.m app/tosserAppDelegate.m app/main.m \
     lib/init*.c \
 	-o $(app_name)/$(exe_name)
+
+	cp -r resources/* $(app_name)
 
 deploy: tosser.app
 	rm -fr $(deploy_path)/$(app_name)

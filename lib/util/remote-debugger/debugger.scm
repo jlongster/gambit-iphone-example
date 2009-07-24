@@ -55,8 +55,7 @@
 
 (define (main #!optional port)
   (set! rdi (rdi-create-server (and port (string->number port))))
-  (rdi-force-connection rdi)
-  (thread-join! (rdi-writer-thread rdi)))
+  (rdi-force-connection rdi))
 
 ;;;-----------------------------------------------------------------------------
 
@@ -103,7 +102,5 @@
                                    console-id
                                    (substring buf 0 n))
                   (loop))))))))))
-
-(main "localhost:20000")
 
 ;;;-----------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 (c-define-type GLenum unsigned-int)
-(c-define-type GLboolean unsigned-char)
+(c-define-type GLboolean int)
 (c-define-type GLbitfield unsigned-int)
 (c-define-type GLbyte signed-char)
 (c-define-type GLshort short)

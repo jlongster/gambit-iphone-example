@@ -11,30 +11,21 @@
 ;;  (make-thread
 ;;   (lambda () (##repl-debug-main))))
 
-;; (thread-sleep! 1)
-
 ;;;; dependencies
 
 (include "resource.scm")
 (include "util/srfi-1.scm")
 
 (include "ffi/gl.scm")
+(include "ffi/gl-util.scm")
 (include "ffi/osx.scm")
 (include "ffi/iphone.scm")
+(include "events.scm")
 
-(include "app2.scm")
-;; (load (resource "lib/app2"))
+(include "app3.scm")
+;; (load (resource "lib/app3"))
 
-;;;; c interface
-
-;; (define (init)
-;;   (+ 5 5))
-
-;; (define (render)
-;;   (+ 4 4))
-
-;; (define (get-title)
-;;   "test")
+;; ;;;; c interface
 
 (c-define (c-init) () void "init" ""
   (init))

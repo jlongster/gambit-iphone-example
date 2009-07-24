@@ -109,13 +109,7 @@
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	glViewport(0, 0, backingWidth, backingHeight);
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrthof(0.0f, 1.0f, 1.0f, 0.0f, -1.0f, 1.0f);
-	glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    
+	    
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 

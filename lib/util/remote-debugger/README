@@ -2,7 +2,7 @@ You need to run this example in Mac OS X, from 2 xterms.
 
 In xterm #1 start the debugger by entering:
 
-% gsi -:dar,h10000 debugger.scm
+% gsi -:dar,h10000 debugger.scm 20000
 
 In xterm #2 start the debuggee by entering:
 
@@ -26,3 +26,12 @@ Gambit v4.2.8
 
 The opening of a window for new REPLs is meant to model the IDE which will
 create a new tab, a new error list item, etc
+
+debuggee.scm calls ##repl-debug-main to start the REPL automatically.
+You can remove this and include debuggee.scm somewhere else if you
+want to embed it. Also, in your client application, you can configure
+where the server is running by calling rdi-set-host! with the
+host/port as a string or the port as an integer, e.g.
+"localhost:20000" or 20000. If just the port is given, the host
+defaults to localhost.
+
