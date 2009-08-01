@@ -4,12 +4,12 @@
 
 ;;;; debugger
 
-;; (include "util/remote-debugger/debuggee.scm")
-;; (rdi-set-host! "localhost:20000")
+(include "util/remote-debugger/debuggee.scm")
+(rdi-set-host! "localhost:20000")
 
-;; (thread-start!
-;;  (make-thread
-;;   (lambda () (##repl-debug-main))))
+(thread-start!
+ (make-thread
+  (lambda () (##repl-debug-main))))
 
 ;;;; dependencies
 
@@ -20,10 +20,11 @@
 (include "ffi/gl-util.scm")
 (include "ffi/osx.scm")
 (include "ffi/iphone.scm")
+(include "vectors.scm")
 (include "events.scm")
 
-(include "app3.scm")
-;; (load (resource "lib/app3"))
+;; (include "app3.scm")
+(load (resource "lib/app3"))
 
 ;; ;;;; c interface
 

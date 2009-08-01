@@ -493,6 +493,7 @@
 (define glDrawArrays (c-lambda (GLenum GLint GLsizei) void "glDrawArrays"))
 
 (define glMatrixMode (c-lambda (GLenum) void "glMatrixMode"))
+(define glMultMatrixf (c-lambda ((pointer GLfloat)) void "glMultMatrixf"))
 (define glColor4f (c-lambda (GLfloat GLfloat GLfloat GLfloat) void "glColor4f"))
 (define glLoadIdentity (c-lambda () void "glLoadIdentity"))
 (define glFrustumf (c-lambda (GLfloat GLfloat GLfloat GLfloat GLfloat GLfloat) void "glFrustumf"))

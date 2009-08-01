@@ -71,7 +71,6 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
-						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>

@@ -9,6 +9,9 @@
 
 (include "config.scm")
 
+;; (define (resource path)
+;;   (let ((base (NSBundle-resource-path (NSBundle-main-bundle))))
+;;     (string-append base "/" path)))
+
 (define (resource path)
-  (let ((base (NSBundle-resource-path (NSBundle-main-bundle))))
-    (string-append base "/" path)))
+  (string-append root "/" path))

@@ -109,6 +109,19 @@
 	
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	glViewport(0, 0, backingWidth, backingHeight);
+
+    float pos[] = { 5.0f, 3.0f, -3.0f, 1.0f };
+    float diffuse[] = { 0.9f, 0.3f, 0.2f, 1.0f };
+    
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT0, GL_POSITION, pos);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+    
+    // glMatrixMode(GL_PROJECTION);
+    // glLoadIdentity();
+    // glOrthof(0.0f, 1.0f, 1.5f, 0.0f, -1.0f, 1.0f);
+    // glMatrixMode(GL_MODELVIEW);
 	    
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);

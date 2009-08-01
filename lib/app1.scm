@@ -1,3 +1,5 @@
+;;;; "app1"
+;;; shows some dancing 2d boxes
 
 ;;;; config
 
