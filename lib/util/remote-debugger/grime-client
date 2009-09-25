@@ -1,0 +1,4 @@
+#! /bin/sh
+
+where="/Users/james/projects/scheme/gambit-iphone-example/lib/util/remote-debugger"
+exec gsi "$where/pump.scm" "$1"

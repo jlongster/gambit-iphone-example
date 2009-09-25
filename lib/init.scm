@@ -16,6 +16,8 @@
 (include "resource.scm")
 (include "util/srfi-1.scm")
 
+(include "ffi/ffi.scm")
+(include "ffi/lodepng/lodepng.scm")
 (include "ffi/gl.scm")
 (include "ffi/gl-util.scm")
 (include "ffi/osx.scm")
@@ -23,8 +25,7 @@
 (include "vectors.scm")
 (include "events.scm")
 
-;; (include "app3.scm")
-(load (resource "lib/app3"))
+(load (resource "lib/apps/animattack"))
 
 ;; ;;;; c interface
 

@@ -13,6 +13,8 @@
 (c-define-type NSString* (pointer "NSString"))
 (c-define-type NSBundle "NSBundle")
 (c-define-type NSBundle* (pointer NSBundle))
+(c-define-type NSImage "NSImage")
+(c-define-type NSImage* (pointer NSImage))
 
 ;;;; Quartz
 

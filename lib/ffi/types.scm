@@ -17,4 +17,6 @@
 (c-define-type GLsizeiptr int)
 
 (c-define-type GLfloat* (pointer GLfloat))
+(c-define-type GLuint* (pointer GLuint))
+(c-define-type GLushort* (pointer GLushort))
 (c-define-type GLubyte* (pointer GLubyte))

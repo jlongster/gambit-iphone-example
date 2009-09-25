@@ -1,90 +1,12 @@
 (c-declare "#include \"stdlib.h\"")
 (c-declare "#include <OpenGLES/ES1/gl.h>")
 (include "types.scm")
-(include "ffi#.scm")
-(include "../util/tests.scm")
 
-;;; util
+(define (display-gl-error)
+  (display "ERROR: ")
+  (display (glGetError))
+  (newline))
 
-(define NULL
-  ((c-lambda () (pointer void #f) "___result_voidstar=0;")))
-
-(define free
-  (c-lambda ((pointer void #f)) void "free((void*)___arg1);"))
-
-
-;;; float vectors
-
-(define make-GLfloat*
-  (c-lambda (int) GLfloat*
-            "___result_voidstar = malloc(___arg1*sizeof(GLfloat));"))
-
-(define GLfloat*-ref
-  (c-lambda (GLfloat* int) GLfloat
-            "___result = ((GLfloat*)___arg1)[___arg2];"))
-
-(define GLfloat*-set!
-  (c-lambda (GLfloat* int GLfloat) void
-            "((GLfloat*)___arg1)[___arg2] = ___arg3;"))
-
-(define (vector->GLfloat* vec)
-  (let* ((length (vector-length vec))
-         (buf (make-GLfloat* length)))
-    (let loop ((i 0))
-      (if (< i length)
-          (begin
-            (GLfloat*-set! buf i (vector-ref vec i))
-            (loop (+ i 1)))
-          buf))))
-
-(with-alloc (buf (make-GLfloat* 5))
-  (GLfloat*-set! buf 0 1.)
-  (GLfloat*-set! buf 1 5.)
-  (assert-equal (GLfloat*-ref buf 0) 1.)
-  (assert-equal (GLfloat*-ref buf 1) 5.))
-
-(with-alloc (buf (vector->GLfloat* (vector 1. 2. 3.)))
-  (assert-equal (GLfloat*-ref buf 0) 1.)
-  (assert-equal (GLfloat*-ref buf 1) 2.)
-  (assert-equal (GLfloat*-ref buf 2) 3.))
-
-
-;;; ubyte vectors
-
-(define make-GLubyte*
-  (c-lambda (int) GLubyte*
-            "___result_voidstar = malloc(___arg1*sizeof(GLubyte));"))
-
-(define GLubyte*-ref
-  (c-lambda (GLubyte* int) GLubyte
-            "___result = ((GLubyte*)___arg1)[___arg2];"))
-
-(define GLubyte*-set!
-  (c-lambda (GLubyte* int GLubyte) void
-            "((GLubyte*)___arg1)[___arg2] = ___arg3;"))
-
-(define (vector->GLubyte* vec)
-  (let* ((length (vector-length vec))
-         (buf (make-GLubyte* length)))
-    (let loop ((i 0))
-      (if (< i length)
-          (begin
-            (GLubyte*-set! buf i (vector-ref vec i))
-            (loop (+ i 1)))
-          buf))))
-
-(with-alloc (buf (make-GLubyte* 5))
-  (GLubyte*-set! buf 0 200)
-  (GLubyte*-set! buf 1 201)
-  (assert-equal (GLubyte*-ref buf 0) 200)
-  (assert-equal (GLubyte*-ref buf 1) 201))
-
-(with-alloc (buf (vector->GLubyte* (vector 200 201 202)))
-  (assert-equal (GLubyte*-ref buf 0) 200)
-  (assert-equal (GLubyte*-ref buf 1) 201)
-  (assert-equal (GLubyte*-ref buf 2) 202))
-
-
 ;;; gl constants
 
 (define GL_VERSION_ES_CM_1_0 1)
@@ -480,6 +402,11 @@
 
 ;;; gl functions
 
+(define glGetError (c-lambda () GLenum "glGetError"))
+
+(define glClearColor (c-lambda (GLclampf GLclampf GLclampf GLclampf) void "glClearColor"))
+(define glClear (c-lambda (GLbitfield) void "glClear"))
+
 (define glEnable (c-lambda (GLenum) void "glEnable"))
 (define glBlendFunc (c-lambda (GLenum GLenum) void "glBlendFunc"))
 
@@ -487,13 +414,25 @@
 (define glRotatef (c-lambda (GLfloat GLfloat GLfloat GLfloat) void "glRotatef"))
 (define glScalef (c-lambda (GLfloat GLfloat GLfloat) void "glScalef"))
 
+(define glGenTextures (c-lambda (GLsizei (pointer GLuint)) void "glGenTextures"))
+(define glBindTexture (c-lambda (GLenum GLuint) void "glBindTexture"))
+(define glTexImage2D (c-lambda (GLenum GLint GLenum GLsizei GLsizei GLint GLenum GLenum (pointer GLvoid)) void "glTexImage2D"))
+(define glTexParameteri (c-lambda (GLenum GLenum GLint) void "glTexParameteri"))
+(define glTexEnvi (c-lambda (GLenum GLenum GLint) void "glTexEnvi"))
+
 (define glVertexPointer (c-lambda (GLint GLenum GLint GLfloat*) void "glVertexPointer"))
 (define glColorPointer (c-lambda (GLint GLenum GLint GLubyte*) void "glColorPointer"))
+(define glNormalPointer (c-lambda (GLenum GLsizei (pointer GLvoid)) void "glNormalPointer"))
+(define glTexCoordPointer (c-lambda (GLint GLenum GLsizei (pointer GLvoid)) void "glTexCoordPointer"))
 (define glEnableClientState (c-lambda (GLenum) void "glEnableClientState"))
+(define glDisableClientState (c-lambda (GLenum) void "glDisableClientState"))
 (define glDrawArrays (c-lambda (GLenum GLint GLsizei) void "glDrawArrays"))
+(define glDrawElements (c-lambda (GLenum GLsizei GLenum (pointer GLvoid)) void "glDrawElements"))
 
+(define glOrthof (c-lambda (GLfloat GLfloat GLfloat GLfloat GLfloat GLfloat) void "glOrthof"))
 (define glMatrixMode (c-lambda (GLenum) void "glMatrixMode"))
 (define glMultMatrixf (c-lambda ((pointer GLfloat)) void "glMultMatrixf"))
+(define glLoadMatrixf (c-lambda ((pointer GLfloat)) void "glLoadMatrixf"))
 (define glColor4f (c-lambda (GLfloat GLfloat GLfloat GLfloat) void "glColor4f"))
 (define glLoadIdentity (c-lambda () void "glLoadIdentity"))
 (define glFrustumf (c-lambda (GLfloat GLfloat GLfloat GLfloat GLfloat GLfloat) void "glFrustumf"))
@@ -501,17 +440,26 @@
 (define glDisable (c-lambda (GLenum) void "glDisable"))
 (define glDepthMask (c-lambda (GLboolean) void "glDepthMask"))
 
+(define glFogf (c-lambda (GLenum GLfloat) void "glFogf"))
+(define glFogfv (c-lambda (GLenum (pointer GLfloat)) void "glFogfv"))
+(define glFogx (c-lambda (GLenum GLfixed) void "glFogx"))
+(define glFogxv (c-lambda (GLenum (pointer GLfixed)) void "glFogxv"))
+(define glLightf (c-lambda (GLenum GLenum GLfloat) void "glLightf"))
+(define glLightfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glLightfv"))
+(define glMaterialf (c-lambda (GLenum GLenum GLfloat) void "glMaterialf"))
+(define glMaterialfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glMaterialfv"))
+(define glShadeModel (c-lambda (GLenum) void "glShadeModel"))
+
+(define glReadPixels (c-lambda (GLint GLint GLsizei GLsizei GLenum GLenum (pointer GLvoid)) void "glReadPixels"))
+
 ;;; definitions generated from opengl, NOT opengl es, some of these work
-;; (define glBindTexture (c-lambda (GLenum GLuint) void "glBindTexture"))
 ;; (define glBitmap (c-lambda (GLsizei GLsizei GLfloat GLfloat GLfloat GLfloat (pointer GLubyte)) void "glBitmap"))
 ;; (define glBlendColor (c-lambda (GLclampf GLclampf GLclampf GLclampf) void "glBlendColor"))
 ;; (define glBlendEquation (c-lambda (GLenum) void "glBlendEquation"))
 ;; (define glBlendEquationSeparate (c-lambda (GLenum GLenum) void "glBlendEquationSeparate"))
 ;; (define glCallList (c-lambda (GLuint) void "glCallList"))
 ;; (define glCallLists (c-lambda (GLsizei GLenum (pointer GLvoid)) void "glCallLists"))
-;; (define glClear (c-lambda (GLbitfield) void "glClear"))
 ;; (define glClearAccum (c-lambda (GLfloat GLfloat GLfloat GLfloat) void "glClearAccum"))
-;; (define glClearColor (c-lambda (GLclampf GLclampf GLclampf GLclampf) void "glClearColor"))
 ;; (define glClearDepth (c-lambda (GLclampd) void "glClearDepth"))
 ;; (define glClearIndex (c-lambda (GLfloat) void "glClearIndex"))
 ;; (define glClearStencil (c-lambda (GLint) void "glClearStencil"))
@@ -543,9 +491,7 @@
 ;; (define glDeleteTextures (c-lambda (GLsizei (pointer GLuint)) void "glDeleteTextures"))
 ;; (define glDepthFunc (c-lambda (GLenum) void "glDepthFunc"))
 ;; (define glDepthRange (c-lambda (GLclampd GLclampd) void "glDepthRange"))
-;; (define glDisableClientState (c-lambda (GLenum) void "glDisableClientState"))
 ;; (define glDrawBuffer (c-lambda (GLenum) void "glDrawBuffer"))
-;; (define glDrawElements (c-lambda (GLenum GLsizei GLenum (pointer GLvoid)) void "glDrawElements"))
 ;; (define glDrawPixels (c-lambda (GLsizei GLsizei GLenum GLenum (pointer GLvoid)) void "glDrawPixels"))
 ;; (define glDrawRangeElements (c-lambda (GLenum GLuint GLuint GLsizei GLenum (pointer GLvoid)) void "glDrawRangeElements"))
 ;; (define glEdgeFlag (c-lambda (GLboolean) void "glEdgeFlag"))
@@ -568,13 +514,8 @@
 ;; (define glFeedbackBuffer (c-lambda (GLsizei GLenum (pointer GLfloat)) void "glFeedbackBuffer"))
 ;; (define glFinish (c-lambda () void "glFinish"))
 ;; (define glFlush (c-lambda () void "glFlush"))
-;; (define glFogf (c-lambda (GLenum GLfloat) void "glFogf"))
-;; (define glFogfv (c-lambda (GLenum (pointer GLfloat)) void "glFogfv"))
-;; (define glFogi (c-lambda (GLenum GLint) void "glFogi"))
-;; (define glFogiv (c-lambda (GLenum (pointer GLint)) void "glFogiv"))
 ;; (define glFrontFace (c-lambda (GLenum) void "glFrontFace"))
 ;; (define glGenLists (c-lambda (GLsizei) GLuint "glGenLists"))
-;; (define glGenTextures (c-lambda (GLsizei (pointer GLuint)) void "glGenTextures"))
 ;; (define glGetBooleanv (c-lambda (GLenum (pointer GLboolean)) void "glGetBooleanv"))
 ;; (define glGetClipPlane (c-lambda (GLenum (pointer GLfloat)) void "glGetClipPlane"))
 ;; (define glGetColorTable (c-lambda (GLenum GLenum GLenum (pointer GLvoid)) void "glGetColorTable"))
@@ -584,7 +525,6 @@
 ;; (define glGetConvolutionParameterfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glGetConvolutionParameterfv"))
 ;; (define glGetConvolutionParameteriv (c-lambda (GLenum GLenum (pointer GLint)) void "glGetConvolutionParameteriv"))
 ;; (define glGetDoublev (c-lambda (GLenum (pointer GLfloat)) void "glGetDoublev"))
-;; (define glGetError (c-lambda () GLenum "glGetError"))
 ;; (define glGetFloatv (c-lambda (GLenum (pointer GLfloat)) void "glGetFloatv"))
 ;; (define glGetHistogram (c-lambda (GLenum GLboolean GLenum GLenum (pointer GLvoid)) void "glGetHistogram"))
 ;; (define glGetHistogramParameterfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glGetHistogramParameterfv"))
@@ -640,15 +580,12 @@
 ;; (define glLightModelfv (c-lambda (GLenum (pointer GLfloat)) void "glLightModelfv"))
 ;; (define glLightModeli (c-lambda (GLenum GLint) void "glLightModeli"))
 ;; (define glLightModeliv (c-lambda (GLenum (pointer GLint)) void "glLightModeliv"))
-;; (define glLightf (c-lambda (GLenum GLenum GLfloat) void "glLightf"))
-;; (define glLightfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glLightfv"))
 ;; (define glLighti (c-lambda (GLenum GLenum GLint) void "glLighti"))
 ;; (define glLightiv (c-lambda (GLenum GLenum (pointer GLint)) void "glLightiv"))
 ;; (define glLineStipple (c-lambda (GLint GLushort) void "glLineStipple"))
 ;; (define glLineWidth (c-lambda (GLfloat) void "glLineWidth"))
 ;; (define glListBase (c-lambda (GLuint) void "glListBase"))
 ;; (define glLoadMatrixd (c-lambda ((pointer GLfloat)) void "glLoadMatrixd"))
-;; (define glLoadMatrixf (c-lambda ((pointer GLfloat)) void "glLoadMatrixf"))
 ;; (define glLoadName (c-lambda (GLuint) void "glLoadName"))
 ;; (define glLogicOp (c-lambda (GLenum) void "glLogicOp"))
 ;; (define glMap1d (c-lambda (GLenum GLfloat GLfloat GLint GLint (pointer GLfloat)) void "glMap1d"))
@@ -677,8 +614,6 @@
 ;; (define glNormal3iv (c-lambda ((pointer GLint)) void "glNormal3iv"))
 ;; (define glNormal3s (c-lambda (GLshort GLshort GLshort) void "glNormal3s"))
 ;; (define glNormal3sv (c-lambda ((pointer GLshort)) void "glNormal3sv"))
-;; (define glNormalPointer (c-lambda (GLenum GLsizei (pointer GLvoid)) void "glNormalPointer"))
-;; (define glOrtho (c-lambda (GLfloat GLfloat GLfloat GLfloat GLfloat GLfloat) void "glOrtho"))
 ;; (define glPassThrough (c-lambda (GLfloat) void "glPassThrough"))
 ;; (define glPixelMapfv (c-lambda (GLenum GLint (pointer GLfloat)) void "glPixelMapfv"))
 ;; (define glPixelMapuiv (c-lambda (GLenum GLint (pointer GLuint)) void "glPixelMapuiv"))
@@ -741,7 +676,6 @@
 ;; (define glScissor (c-lambda (GLint GLint GLsizei GLsizei) void "glScissor"))
 ;; (define glSelectBuffer (c-lambda (GLsizei (pointer GLuint)) void "glSelectBuffer"))
 ;; (define glSeparableFilter2D (c-lambda (GLenum GLenum GLsizei GLsizei GLenum GLenum (pointer GLvoid) (pointer GLvoid)) void "glSeparableFilter2D"))
-;; (define glShadeModel (c-lambda (GLenum) void "glShadeModel"))
 ;; (define glStencilFunc (c-lambda (GLenum GLint GLuint) void "glStencilFunc"))
 ;; (define glStencilMask (c-lambda (GLuint) void "glStencilMask"))
 ;; (define glStencilOp (c-lambda (GLenum GLenum GLenum) void "glStencilOp"))
@@ -777,10 +711,8 @@
 ;; (define glTexCoord4iv (c-lambda ((pointer GLint)) void "glTexCoord4iv"))
 ;; (define glTexCoord4s (c-lambda (GLshort GLshort GLshort GLshort) void "glTexCoord4s"))
 ;; (define glTexCoord4sv (c-lambda ((pointer GLshort)) void "glTexCoord4sv"))
-;; (define glTexCoordPointer (c-lambda (GLint GLenum GLsizei (pointer GLvoid)) void "glTexCoordPointer"))
 ;; (define glTexEnvf (c-lambda (GLenum GLenum GLfloat) void "glTexEnvf"))
 ;; (define glTexEnvfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glTexEnvfv"))
-;; (define glTexEnvi (c-lambda (GLenum GLenum GLint) void "glTexEnvi"))
 ;; (define glTexEnviv (c-lambda (GLenum GLenum (pointer GLint)) void "glTexEnviv"))
 ;; (define glTexGend (c-lambda (GLenum GLenum GLfloat) void "glTexGend"))
 ;; (define glTexGendv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glTexGendv"))
@@ -789,11 +721,9 @@
 ;; (define glTexGeni (c-lambda (GLenum GLenum GLint) void "glTexGeni"))
 ;; (define glTexGeniv (c-lambda (GLenum GLenum (pointer GLint)) void "glTexGeniv"))
 ;; (define glTexImage1D (c-lambda (GLenum GLint GLenum GLsizei GLint GLenum GLenum (pointer GLvoid)) void "glTexImage1D"))
-;; (define glTexImage2D (c-lambda (GLenum GLint GLenum GLsizei GLsizei GLint GLenum GLenum (pointer GLvoid)) void "glTexImage2D"))
 ;; (define glTexImage3D (c-lambda (GLenum GLint GLenum GLsizei GLsizei GLsizei GLint GLenum GLenum (pointer GLvoid)) void "glTexImage3D"))
 ;; (define glTexParameterf (c-lambda (GLenum GLenum GLfloat) void "glTexParameterf"))
 ;; (define glTexParameterfv (c-lambda (GLenum GLenum (pointer GLfloat)) void "glTexParameterfv"))
-;; (define glTexParameteri (c-lambda (GLenum GLenum GLint) void "glTexParameteri"))
 ;; (define glTexParameteriv (c-lambda (GLenum GLenum (pointer GLint)) void "glTexParameteriv"))
 ;; (define glTexSubImage1D (c-lambda (GLenum GLint GLint GLsizei GLenum GLenum (pointer GLvoid)) void "glTexSubImage1D"))
 ;; (define glTexSubImage2D (c-lambda (GLenum GLint GLint GLint GLsizei GLsizei GLenum GLenum (pointer GLvoid)) void "glTexSubImage2D"))

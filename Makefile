@@ -13,7 +13,7 @@ gsc=/usr/local/Gambit-C/iPhoneSimulator3.0/bin/gsc
 
 all: lib/init_.c config
 
-lib/init_.c: lib/init.scm lib/ffi/gl.scm lib/util/srfi-1.scm lib/app3.scm
+lib/init_.c: lib/init.scm lib/ffi/gl.scm lib/util/srfi-1.scm lib/apps/*
 	cd lib && $(gsc) -link init.scm
 
 config:
@@ -45,7 +45,7 @@ lib/graphics.o1: lib/graphics.scm
 
 app_name=tosser.app
 exe_name=tosser
-uuid=ECCD22EF-BCFD-41D0-8811-951E3EE21250
+uuid=153B58C1-32F3-4F6E-A636-31C1271B27A5
 deploy_path=~/Library/'Application Support/iPhone Simulator'/User/Applications/$(uuid)
 
 gcc=/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2
@@ -63,6 +63,7 @@ tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c config
 
 	$(gcc) -x objective-c -arch i386 -isysroot $(sdk) \
 	-D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 \
+	-mmacosx-version-min=10.5 \
 	-framework Foundation -framework UIKit \
 	-framework OpenGLES -framework QuartzCore \
 	-fvisibility=hidden -I/usr/local/include -D___LIBRARY -lgambc \

@@ -118,7 +118,7 @@
 (define (rdi-open-server rdi)
   (let ((listen-port
          (open-tcp-server
-          (list port-number: (rdi-port-num rdi)
+          (list server-address: (string-append "*:" (number->string (rdi-port-num rdi)))
                 reuse-address: #t))))
     (let loop ()
       (let ((connection
@@ -166,15 +166,15 @@
       (case (car msg)
 
         ((reader-thread-terminated)
-         (pretty-print
-          '(rdi reader-thread is terminating)
-          ##stdout-port)
+         ;; (pretty-print
+         ;;  '(rdi reader-thread is terminating)
+         ;;  ##stdout-port)
          #t)
 
         ((terminate)
-         (pretty-print
-          '(rdi writer-thread is terminating)
-          ##stdout-port)
+         ;; (pretty-print
+         ;;  '(rdi writer-thread is terminating)
+         ;;  ##stdout-port)
          #f)
 
         ((call)

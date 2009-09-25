@@ -6,9 +6,7 @@
 
 (include "osx#.scm")
 
-;;;; Cocoa
-
-;;;;; NSArray
+;;; NSArray
 
 (define (NSArray->list arr)
   (let ((len (NSArray-length arr)))
@@ -28,7 +26,7 @@ end-c-code
 
 ;;; NSArray-set! is not implemented. Yo.
 
-;;;;; NSSet
+;;; NSSet
 
 (define NSSet->NSArray
  (c-lambda (NSSet*) NSArray* "___result_voidstar = [___arg1 allObjects];"))
@@ -36,7 +34,11 @@ end-c-code
 (define (NSSet->list set)
   (NSArray->list (NSSet->NSArray set)))
 
-;;;;; NSString
+;;; NSString
+
+(define make-NSString
+  (c-lambda (char-string) NSString*
+            "___result = [[NSString alloc] initWithCString:___arg1 encoding:NSASCIIStringEncoding];"))
 
 (define NSString-get-ascii-c-string
   (c-lambda (NSString*) char-string #<<end-c-code
@@ -46,7 +48,7 @@ end-c-code
 end-c-code
 ))
 
-;;;;; NSBundle
+;;; NSBundle
 
 (define NSBundle-main-bundle
   (c-lambda () NSBundle* "___result_voidstar = [NSBundle mainBundle];"))
@@ -57,10 +59,7 @@ end-c-code
 (define (NSBundle-resource-path bundle)
   (NSString-get-ascii-c-string (%%NSBundle-resource-path bundle)))
 
-
-;;;; Quartz
-
-;;;;; CGPoint
+;;; CGPoint
 
 (define CGPoint-x
   (c-lambda (CGPoint) CGFloat "___result = ___arg1.x;"))
@@ -68,7 +67,7 @@ end-c-code
 (define CGPoint-y
   (c-lambda (CGPoint) CGFloat "___result = ___arg1.y;"))
 
-;;;;; CGSize
+;;; CGSize
 
 (define CGSize-width
   (c-lambda (CGSize) CGFloat "___result = ___arg1.width;"))
@@ -76,7 +75,7 @@ end-c-code
 (define CGSize-height
   (c-lambda (CGSize) CGFloat "___result = ___arg1.height;"))
 
-;;;;; CGRect
+;;; CGRect
 
 ;;; WARNING: Do not use this function yet, it crashes for some reason
 (define CGRect-origin

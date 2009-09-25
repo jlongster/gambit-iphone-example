@@ -42,5 +42,7 @@
       (out (repl-output-port)))
   (if (tty? in)
       (tty-mode-set! in #f #t #f #f 38400)) ;; disallow ^C
-  (thread-start! (make-thread (lambda () (copy connection out))))
+  (thread-start! (make-thread (lambda ()
+                                (copy connection out)
+                                (exit))))
   (copy in connection))

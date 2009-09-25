@@ -13,32 +13,32 @@
     (set! console-window-num x)
     x))
 
-(define (open-console-window)
+(define (open-console-window console-id)
   (let ((tcp-port (+ 9000 (new-console-window-num))))
-    (let ((window
-           (open-process
-            (list path: "xterm"
-                  arguments: (list "-e"
-                                   "gsi"
-                                   "-:tE"
-                                   "pump.scm"
-                                   (number->string tcp-port))))))
-      (let loop ()
-        (let ((port
-               (with-exception-catcher
-                (lambda (e)
-                  #f)
-                (lambda ()
-                  (let ((port (open-tcp-client
-                               (list server-address: "localhost"
-                                     port-number: tcp-port))))
-                    (tcp-client-peer-socket-info port)
-                    port)))))
-          (if (not port)
-              (begin
-                (thread-sleep! .1) ;; wait until the pump starts
-                (loop))
-              port))))))
+    (pp `(grime-open-client ,console-id ,tcp-port))
+    ;; (let ((window
+    ;;        (open-process
+    ;;         (list path: "xterm"
+    ;;               arguments: (list "-e"
+    ;;                                "gsi"
+    ;;                                "pump.scm"
+    ;;                                (numbqer->string tcp-port)))))))
+    (let loop ()
+      (let ((port
+             (with-exception-catcher
+              (lambda (e)
+                #f)
+              (lambda ()
+                (let ((port (open-tcp-client
+                             (list server-address: "localhost"
+                                   port-number: tcp-port))))
+                  (tcp-client-peer-socket-info port)
+                  port)))))
+        (if (not port)
+            (begin
+              (thread-sleep! .1) ;; wait until the pump starts
+              (loop))
+            port)))))
 
 ;;;-----------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@
 (define rdi-console-table (make-table))
 
 (define (rdi-register-console console-id)
-  (let ((console-port (open-console-window)))
+  (let ((console-port (open-console-window console-id)))
     (table-set! rdi-console-table console-id console-port)
     (rdi-console-input-pump-start! console-id console-port)
     #f))

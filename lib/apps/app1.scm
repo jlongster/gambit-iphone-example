@@ -54,6 +54,10 @@
   (glDrawArrays GL_TRIANGLE_STRIP 0 4))
 
 (define (init)
+  ;; glMatrixMode(GL_PROJECTION);
+  ;; glLoadIdentity();
+  ;; glOrthof(0.0f, 1.0f, 1.5f, 0.0f, -1.0f, 1.0f);
+  ;; glMatrixMode(GL_MODELVIEW);
   (void))
 
 (define (render)

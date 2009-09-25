@@ -6,14 +6,12 @@
 //  Copyright Coptix, Inc 2009. All rights reserved.
 //
 
-
-
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
 
 #import "EAGLView.h"
 
-#define USE_DEPTH_BUFFER 0
+#define USE_DEPTH_BUFFER 1
 
 // A class extension to declare private methods
 @interface EAGLView ()
@@ -110,28 +108,11 @@
 	glBindFramebufferOES(GL_FRAMEBUFFER_OES, viewFramebuffer);
 	glViewport(0, 0, backingWidth, backingHeight);
 
-    float pos[] = { 5.0f, 3.0f, -3.0f, 1.0f };
-    float diffuse[] = { 0.9f, 0.3f, 0.2f, 1.0f };
-    
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glLightfv(GL_LIGHT0, GL_POSITION, pos);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-    
-    // glMatrixMode(GL_PROJECTION);
-    // glLoadIdentity();
-    // glOrthof(0.0f, 1.0f, 1.5f, 0.0f, -1.0f, 1.0f);
-    // glMatrixMode(GL_MODELVIEW);
-	    
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
     render();
 
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
 	[context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }
-
 
 - (void)layoutSubviews {
 	[EAGLContext setCurrentContext:context];
@@ -140,9 +121,7 @@
 	[self drawView];
 }
 
-
 - (BOOL)createFramebuffer {
-	
 	glGenFramebuffersOES(1, &viewFramebuffer);
 	glGenRenderbuffersOES(1, &viewRenderbuffer);
 	
@@ -154,13 +133,15 @@
 	glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &backingWidth);
 	glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &backingHeight);
 	
-	if (USE_DEPTH_BUFFER) {
+	if(USE_DEPTH_BUFFER) {
 		glGenRenderbuffersOES(1, &depthRenderbuffer);
 		glBindRenderbufferOES(GL_RENDERBUFFER_OES, depthRenderbuffer);
 		glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_DEPTH_COMPONENT16_OES, backingWidth, backingHeight);
 		glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_DEPTH_ATTACHMENT_OES, GL_RENDERBUFFER_OES, depthRenderbuffer);
 	}
-	
+    
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, viewRenderbuffer);
+    
 	if(glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
 		NSLog(@"failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
 		return NO;

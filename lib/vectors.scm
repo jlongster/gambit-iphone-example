@@ -7,6 +7,9 @@
 (define (vec3d-x v) (f64vector-ref v 0))
 (define (vec3d-y v) (f64vector-ref v 1))
 (define (vec3d-z v) (f64vector-ref v 2))
+(define (vec3d-x-set! v f) (f64vector-set! v 0 f))
+(define (vec3d-y-set! v f) (f64vector-set! v 1 f))
+(define (vec3d-z-set! v f) (f64vector-set! v 2 f))
 
 (define (make-vec4d x y z w) (f64vector x y z w))
 (define (vec4d-x v) (f64vector-ref v 0))
@@ -59,3 +62,9 @@
 		     (fl* v1-x v2-z))
 		(fl- (fl* v1-x v2-y)
 		     (fl* v1-y v2-x)))))
+
+(define (vec4d-add v1 v2)
+  (make-vec4d (+ (vec4d-x v1) (vec4d-x v2))
+              (+ (vec4d-y v1) (vec4d-y v2))
+              (+ (vec4d-z v1) (vec4d-z v2))
+              (+ (vec4d-w v1) (vec4d-w v2))))

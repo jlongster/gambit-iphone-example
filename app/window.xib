@@ -80,6 +80,9 @@
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="936998660"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">1</int>
+				</object>
 				<bool key="IBUIVisibleAtLaunch">YES</bool>
 			</object>
 		</object>
@@ -200,7 +203,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{441, 318}, {320, 480}}</string>
+					<string>{{471, 319}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>tosserAppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

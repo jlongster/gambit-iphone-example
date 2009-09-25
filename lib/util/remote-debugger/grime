@@ -1,0 +1,4 @@
+#! /bin/sh
+
+where="/Users/james/projects/scheme/gambit-iphone-example/lib/util/remote-debugger"
+exec gsi -:dar,h10000 "$where/debugger.scm" "$1"

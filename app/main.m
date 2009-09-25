@@ -6,7 +6,7 @@
 //  Copyright Coptix, Inc 2009. All rights reserved.
 //
 
-#define ___VERSION 404004
+#define ___VERSION 405001
 
 #import <UIKit/UIKit.h>
 #include "gambit.h"
@@ -33,18 +33,18 @@ int main(int argc, char *argv[]) {
     //      & ~___DEBUG_SETTINGS_REPL_MASK)
     //     | (___DEBUG_SETTINGS_REPL_STDIO
     //        << ___DEBUG_SETTINGS_REPL_SHIFT);
-    // // -:da
-    // debug_settings =
-    //     (debug_settings
-    //      & ~___DEBUG_SETTINGS_UNCAUGHT_MASK)
-    //     | (___DEBUG_SETTINGS_UNCAUGHT_ALL
-    //        << ___DEBUG_SETTINGS_UNCAUGHT_SHIFT);
-    // // -:dr
-    // debug_settings =
-    //     (debug_settings
-    //      & ~___DEBUG_SETTINGS_ERROR_MASK)
-    //     | (___DEBUG_SETTINGS_ERROR_REPL
-    //        << ___DEBUG_SETTINGS_ERROR_SHIFT);
+    // -:da
+    debug_settings =
+        (debug_settings
+         & ~___DEBUG_SETTINGS_UNCAUGHT_MASK)
+        | (___DEBUG_SETTINGS_UNCAUGHT_ALL
+           << ___DEBUG_SETTINGS_UNCAUGHT_SHIFT);
+    // -:dr
+    debug_settings =
+        (debug_settings
+         & ~___DEBUG_SETTINGS_ERROR_MASK)
+        | (___DEBUG_SETTINGS_ERROR_REPL
+           << ___DEBUG_SETTINGS_ERROR_SHIFT);
     // -:d2
     // debug_settings =
     //     (debug_settings & ~___DEBUG_SETTINGS_LEVEL_MASK)
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     ___setup_params_reset (&setup_params);
 	setup_params.version = ___VERSION;
 	setup_params.linker = LINKER;
-    //setup_params.debug_settings = debug_settings;
+    setup_params.debug_settings = debug_settings;
     
 	___setup(&setup_params);
 
