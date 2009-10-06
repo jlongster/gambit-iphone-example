@@ -1,8 +1,8 @@
 ;;;; "lodepng"
 ;;; Library for loading PNG images.
 
-(c-declare "#include \"lib/ffi/lodepng/lodepng-src.c\"")
-(c-declare "#include \"lib/ffi/lodepng/util.c\"")
+(c-declare "#include \"ffi/lodepng/lodepng-src.c\"")
+(c-declare "#include \"ffi/lodepng/util.c\"")
 
 (c-define-type __lodepng_image
                (type "__lodepng_image" 'loadpng_image "__release_loadpng_image"))

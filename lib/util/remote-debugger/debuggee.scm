@@ -70,11 +70,21 @@
       (rdi-register-console thread remote-port)
       local-port)))
 
+(define open-dummy-console? #t)
+
 (define (thread-make-repl-channel-remote thread)
-  (let ((local-port (make-repl-channel-remote-port thread)))
-    (##make-repl-channel-ports local-port local-port)))
+  (with-exception-catcher
+   (lambda (e)
+     (let ((i (open-input-string ""))
+           (o (open-output-string)))
+       (##make-repl-channel-ports i o)))
+   (lambda ()
+     (let ((local-port (make-repl-channel-remote-port thread)))
+       (##make-repl-channel-ports local-port local-port)))))
 
 (set! ##thread-make-repl-channel
       thread-make-repl-channel-remote)
+
+(##repl-debug-main)
 
 ;;;-----------------------------------------------------------------------------

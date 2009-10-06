@@ -7,7 +7,7 @@
 ### only to generate C code. (Obviously, we can't run "gsc" from the
 ### iPhoneOS build since it's build for ARM.)
 
-gsc=/usr/local/Gambit-C/iPhoneSimulator3.0/bin/gsc
+gsc=/usr/local/Gambit-C/iPhoneSimulator3.1/bin/gsc
 
 #### Main
 
@@ -45,11 +45,11 @@ lib/graphics.o1: lib/graphics.scm
 
 app_name=tosser.app
 exe_name=tosser
-uuid=153B58C1-32F3-4F6E-A636-31C1271B27A5
+uuid=A328A13D-AFC6-45E2-8710-5068A69C7EA1
 deploy_path=~/Library/'Application Support/iPhone Simulator'/User/Applications/$(uuid)
 
 gcc=/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2
-sdk=/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk
+sdk=/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.sdk
 # gcc=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1
 # sdk=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk
 
@@ -67,8 +67,8 @@ tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c config
 	-framework Foundation -framework UIKit \
 	-framework OpenGLES -framework QuartzCore \
 	-fvisibility=hidden -I/usr/local/include -D___LIBRARY -lgambc \
-    -I/usr/local/Gambit-C/iPhoneSimulator3.0/include \
-    -L/usr/local/Gambit-C/iPhoneSimulator3.0/lib \
+    -I/usr/local/Gambit-C/iPhoneSimulator3.1/include \
+    -L/usr/local/Gambit-C/iPhoneSimulator3.1/lib \
 	app/EAGLView.m app/tosserAppDelegate.m app/main.m \
     lib/init*.c \
 	-o $(app_name)/$(exe_name)

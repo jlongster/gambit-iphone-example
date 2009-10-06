@@ -7,11 +7,11 @@
 ;;; our resources like Xcode, which is annoying, so we choose the
 ;;; latter.
 
-;; (define (resource path)
-;;   (let ((base (NSBundle-resource-path (NSBundle-main-bundle))))
-;;     (string-append base "/" path)))
+(define (resource path)
+  (let ((base (NSBundle-resource-path (NSBundle-main-bundle))))
+    (string-append base "/" path)))
 
 (include "config.scm")
 
-(define (resource path)
+(define (local-resource path)
   (string-append root "/" path))

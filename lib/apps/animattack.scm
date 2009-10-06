@@ -1,6 +1,7 @@
 ;;;; "app6"
 ;;; dynamic world
 
+(include "../util/srfi-2.scm")
 (include "../events#.scm")
 (include "../obj-loader2.scm")
 (include "../scene.scm")
@@ -11,8 +12,8 @@
 
 ;;; resources
 
-(define cow-mesh (obj-load (resource "resources/cow")))
-(define sheep-mesh (obj-load (resource "resources/sheep")))
+(define cow-mesh (obj-load (resource "cow")))
+(define sheep-mesh (obj-load (resource "sheep")))
 
 ;;; controls
 
@@ -97,12 +98,10 @@
 (define %%crack-num-vertices 0)
 (define %%crack-lines '())
 
-(define points '())
-
 (define (deviate n)
   (+ n (* (- (random-real) .5) 150.)))
 
-(define (impact x y)
+(define (make-crack x y)
   (if %%crack-vertices
       (free %%crack-vertices))
 
@@ -138,23 +137,23 @@
 
 ;;; mouse picking
 
-(define (find-entity-intersection x y z)
-  (let loop ((tail %%entities))
-    (if (null? tail)
-        #f
-        (let* ((obj (car tail))
-               (mesh (scene-object-mesh obj))
-               (bb (obj-bounding-box mesh)))
-          (if (ray-box-intersection (bounding-box-min-x bb)
-                                    (bounding-box-min-y bb)
-                                    (bounding-box-min-z bb)
-                                    (bounding-box-max-x bb)
-                                    (bounding-box-max-y bb)
-                                    (bounding-box-max-z bb)
-                                    0. 0. 0.
-                                    x y z)
-              obj
-              (loop (cdr tail)))))))
+;; (define (find-entity-intersection x y z)
+;;   (let loop ((tail %%entities))
+;;     (if (null? tail)
+;;         #f
+;;         (let* ((obj (car tail))
+;;                (mesh (scene-object-mesh obj))
+;;                (bb (obj-bounding-box mesh)))
+;;           (if (ray-box-intersection (bounding-box-min-x bb)
+;;                                     (bounding-box-min-y bb)
+;;                                     (bounding-box-min-z bb)
+;;                                     (bounding-box-max-x bb)
+;;                                     (bounding-box-max-y bb)
+;;                                     (bounding-box-max-z bb)
+;;                                     0. 0. 0.
+;;                                     x y z)
+;;               obj
+;;               (loop (cdr tail)))))))
 
 (define %%color-index 0)
 (define %%color-map (make-vector 256 #f))
@@ -298,15 +297,17 @@
   (let ((pos (scene-object-position el)))
     (if (< (vec3d-z pos) SCREEN)
         (begin
-          (vec3d-z-set! pos SCREEN)
-          (apply impact
-                 (unproject (vec3d-x pos) (vec3d-y pos) (vec3d-z pos)))
-          (scene-object-velocity-set! el (make-vec3d 0. 0. 0.))
-          (scene-object-acceleration-set! el (make-vec3d 0. -10. 0.))
-))))
+          (impact el)
+          (if (not (no-more-life?))
+              (begin
+                (vec3d-z-set! pos SCREEN)
+                (apply make-crack
+                       (unproject (vec3d-x pos) (vec3d-y pos) (vec3d-z pos)))
+                (scene-object-velocity-set! el (make-vec3d 0. 0. 0.))
+                (scene-object-acceleration-set! el (make-vec3d 0. -10. 0.))))))))
 
 (define (%%get-random-time)
-  (+ (real-time) (+ (random-real) 1.5)))
+  (+ (real-time) (* (random-real) 3.)))
 
 (define (%%get-random-mesh)
   (let ((x (random-integer 100)))
@@ -326,14 +327,14 @@
 
 (define (make-entity)
   (let* ((pos (make-vec3d
-               (* (spread-number (random-real)) 10.) -28. 40.))
+               (* (spread-number (random-real)) 7.) -28. 40.))
          (to-eye (vec3d-unit (vec3d-sub (make-vec3d 0. 0. 0.)
                                         pos)))
-         (vel (vec3d-add (make-vec3d 0. 27. 0.)
-                         (vec3d-component-mul to-eye
-                                              (make-vec3d (* (random-real) 20.)
-                                                          0.
-                                                          (* (random-real) 20.))))))
+         (x (* (spread-number (random-real)) 3.16))
+         (thrust (+ 15. (* x (abs x))))
+         (vel (make-vec3d (* (vec3d-x to-eye) thrust)
+                          (+ 25.5 (spread-number (random-real)))
+                          (* (vec3d-z to-eye) thrust))))
     (let ((obj (make-scene-object
                 (%%get-random-mesh)
                 #f
@@ -362,7 +363,29 @@
       (scene-object-data-set! obj (get-next-color-index obj))
       obj)))
 
-(define background-texture #f)1
+;; life
+
+(define %%entity-forces
+  `((,cow-mesh 2)
+    (,sheep-mesh 1)))
+
+(define (entity-force el)
+  (let ((mesh (scene-object-mesh el)))
+    (and-let* ((x (assq mesh %%entity-forces)))
+      (cadr x))))
+
+(define %%life 100)
+
+(define (impact el)
+  (let ((f (entity-force el)))
+    (set! %%life (- %%life f))))
+
+(define (no-more-life?)
+  (<= %%life 0))
+
+;; engine
+
+(define background-texture #f)
 
 (define (init)
   (random-source-randomize! default-random-source)
@@ -382,7 +405,7 @@
 
   (set! GRAVITY (make-vec3d 0. -11. 0.))
   
-  (let ((image (LodePNG-decode32f (resource "resources/sky.png"))))
+  (let ((image (LodePNG-decode32f (resource "sky2.pnx"))))
     (set! background-texture (image-opengl-upload
                               (LodeImage-data image)
                               (LodeImage-width image)
@@ -415,10 +438,8 @@
                   (loop)))))
         (glClear (bitwise-ior GL_COLOR_BUFFER_BIT GL_DEPTH_BUFFER_BIT))))
 
-  (glClearColor 1. 1. 1. 1.)
+  (glClearColor 0. 0. 0. 1.)
   (glClear (bitwise-ior GL_COLOR_BUFFER_BIT GL_DEPTH_BUFFER_BIT))
-
-  (run)
 
   (let ((width (UIView-width (current-view)))
         (height (UIView-height (current-view))))
@@ -431,7 +452,7 @@
     (glLoadIdentity)
     (image-render background-texture)
 
-    ;; 3d
+    ;; ;; 3d
     (let* ((fov 40.)
            (aspect (/ width height)))
       (glMatrixMode GL_PROJECTION)
@@ -443,6 +464,7 @@
       (glMatrixMode GL_MODELVIEW)
       (glLoadIdentity))
 
+    (run)
     ;(render-grid 100.)
     (run-render-queue (scene-list->render-queue))
     
@@ -454,7 +476,9 @@
               0.0 -1.0 1.0)
     (glMatrixMode GL_MODELVIEW)
     (glLoadIdentity)
-    (render-cracks))
+    (if (not (no-more-life?))
+        (render-cracks))
+    )
   (##gc))
 
 (define (get-title)

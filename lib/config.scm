@@ -1,1 +1,1 @@
-(define root "/Users/james/Projects/Scheme/gambit-iphone-example")
+(define root "/Users/james/projects/scheme/gambit-iphone-example")

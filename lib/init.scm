@@ -4,12 +4,20 @@
 
 ;;;; debugger
 
-(include "util/remote-debugger/debuggee.scm")
-(rdi-set-host! "localhost:20000")
+;; (include "util/remote-debugger/debuggee.scm")
+;; (rdi-set-host! "localhost:20000")
 
-(thread-start!
- (make-thread
-  (lambda () (##repl-debug-main))))
+;; (define (thread-make-repl-channel-remote thread)
+;;   (let ((i (open-input-string ""))
+;;         (o (open-output-string)))
+;;     (##make-repl-channel-ports i o)))
+
+;; (set! ##thread-make-repl-channel
+;;       thread-make-repl-channel-remote)
+
+;; (thread-start!
+;;  (make-thread
+;;   (lambda () (##repl-debug-main))))
 
 ;;;; dependencies
 
@@ -25,7 +33,8 @@
 (include "vectors.scm")
 (include "events.scm")
 
-(load (resource "lib/apps/animattack"))
+;;(load (local-resource "lib/apps/animattack"))
+(include "apps/animattack.scm")
 
 ;; ;;;; c interface
 

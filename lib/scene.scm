@@ -2,6 +2,18 @@
 ;;; Functionality for organizing data in a scene in a heirarchal
 ;;; order and rendering it
 
+;; (define-class Scene-Object Object
+;;   (mesh
+;;    (= color :maybe-uninitialized)
+;;    (= position :initializer (lambda () (make-vec3d 0. 0. 0.)))
+;;    (= rotation :initializer (lambda () (make-vec4d 0. 0. 0. 0.)))
+;;    (= scale :initializer (lambda () (make-vec3d 1. 1. 1.)))))
+
+;; (define-class Physics-Object Scene-Object
+;;   (= velocity :initialize (lambda () (make-vec3d 0. 0. 0.)))
+;;   (= acceleration :initialize (lambda () (make-vec3d 0. 0. 0.)))
+;;   (= updater :initialize )
+;;   (= %%last-update :initializer (lambda () #f)))
 
 (define-type scene-object
   constructor: really-make-scene-object
@@ -101,6 +113,5 @@
        scene-list))
 
 ;;;;; render queue
-
 (define (run-render-queue rq)
   (for-each (lambda (el) (el)) rq))
