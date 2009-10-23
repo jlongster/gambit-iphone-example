@@ -85,6 +85,4 @@
 (set! ##thread-make-repl-channel
       thread-make-repl-channel-remote)
 
-(##repl-debug-main)
-
 ;;;-----------------------------------------------------------------------------

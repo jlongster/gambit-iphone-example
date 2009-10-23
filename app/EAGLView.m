@@ -13,6 +13,23 @@
 
 #define USE_DEPTH_BUFFER 1
 
+#if __cplusplus
+extern "C" {
+#endif
+    void register_view(UIView*);
+    void init();
+    void render();
+    char* get_title();
+    void did_accelerate(UIAccelerometer*, UIAcceleration*);
+    void touches_began(NSSet*, UIEvent*);
+    void touches_moved(NSSet*, UIEvent*);
+    void touches_ended(NSSet*, UIEvent*);
+    void touches_cancelled(NSSet*, UIEvent*);
+#if __cplusplus
+}
+#endif
+
+
 // A class extension to declare private methods
 @interface EAGLView ()
 
@@ -21,6 +38,7 @@
 
 - (BOOL) createFramebuffer;
 - (void) destroyFramebuffer;
+- (void) initAccelerometer;
 
 @end
 

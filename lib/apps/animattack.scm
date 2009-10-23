@@ -81,6 +81,48 @@
             (render-bounding-box el)))
         scene-list)))
 
+(define (handle-intersections)
+  (define (bounds n x y)
+    (max x (min n y)))
+  
+  (define (get-pixels x y)
+    (let ((buf (make-unsigned-int8-array 36))
+          (width (UIView-height (current-view)))
+          (height (UIView-height (current-view))))
+      (glReadPixels (bounds (- x 1) 0 width)
+                    (bounds (- height y 1) 0 height)
+                    3 3
+                    GL_RGBA GL_UNSIGNED_BYTE
+                    (->void-array buf))
+      buf))
+
+  (define (find-object pixels)
+    (let loop ((i 0))
+      (if (< i 36)
+          (or (lookup-color-index (unsigned-int8-array-ref pixels i))
+              (loop (+ i 4)))
+          #f)))
+
+  (define (find-object-at-point x y)
+    (find-object (get-pixels x y)))
+  
+  (if (intersection-waiting?)
+      (begin
+        (render-intersection-buffer)
+        (let loop ()
+          (let ((loc (dequeue-intersection)))
+            (if loc
+                (begin
+                  (and-let* ((obj (find-object-at-point (car loc) (cadr loc))))
+                    (set! scene-list
+                          (fold (lambda (el acc)
+                                  (if (eq? el obj)
+                                      acc
+                                      (cons el acc)))
+                                '()
+                                scene-list)))
+                  (loop))))))))
+
 (define-event-handler (touches-began touches event)
   (for-each (lambda (el)
               (let ((loc (UITouch-location el)))
@@ -404,39 +446,28 @@
   (glLightfv GL_LIGHT0 GL_DIFFUSE (vector->float-array (vector 1. 1. 1. 1.)))
 
   (set! GRAVITY (make-vec3d 0. -11. 0.))
-  
-  (let ((image (LodePNG-decode32f (resource "sky2.pnx"))))
+
+  (let ((image (CGImageRef-loadpng "sky")))
     (set! background-texture (image-opengl-upload
-                              (LodeImage-data image)
-                              (LodeImage-width image)
-                              (LodeImage-height image)))))
+                              (CGImageRef-data image)
+                              (CGImageRef-width image)
+                              (CGImageRef-height image))))
+
+  #;
+  (let ((image (LodePNG-decode32f (resource "sky2.pnx"))))
+    (set! background-texture #f)
+    ;; (set! background-texture (image-opengl-upload
+    ;;                           (LodeImage-data image)
+    ;;                           (LodeImage-width image)
+    ;;                           (LodeImage-height image)))
+    ))
 
 (define (run)
   (possibly-make-entity)
   (scene-list-update global-update))
 
 (define (render)
-  (if (intersection-waiting?)
-      (begin
-        (render-intersection-buffer)
-        (let loop ()
-          (let ((loc (dequeue-intersection)))
-            (if loc
-                (let ((buf (make-unsigned-int8-array 4))
-                      (height (UIView-height (current-view))))
-                  (glReadPixels (car loc) (- height (cadr loc)) 1 1
-                                GL_RGBA GL_UNSIGNED_BYTE
-                                (->void-array buf))
-                  (let ((obj (lookup-color-index (unsigned-int8-array-ref buf 0))))
-                    (set! scene-list
-                          (fold (lambda (el acc)
-                                  (if (eq? el obj)
-                                      acc
-                                      (cons el acc)))
-                                '()
-                                scene-list)))
-                  (loop)))))
-        (glClear (bitwise-ior GL_COLOR_BUFFER_BIT GL_DEPTH_BUFFER_BIT))))
+  (handle-intersections)
 
   (glClearColor 0. 0. 0. 1.)
   (glClear (bitwise-ior GL_COLOR_BUFFER_BIT GL_DEPTH_BUFFER_BIT))
@@ -452,7 +483,7 @@
     (glLoadIdentity)
     (image-render background-texture)
 
-    ;; ;; 3d
+    ;; 3d
     (let* ((fov 40.)
            (aspect (/ width height)))
       (glMatrixMode GL_PROJECTION)

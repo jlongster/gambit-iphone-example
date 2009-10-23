@@ -25,3 +25,5 @@
 (c-define-type CGSize* (pointer CGSize))
 (c-define-type CGRect "CGRect")
 (c-define-type CGRect* (pointer CGRect))
+(c-define-type CGImageRef "CGImageRef")
+

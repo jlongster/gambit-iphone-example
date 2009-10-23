@@ -28,11 +28,11 @@ int main(int argc, char *argv[]) {
     
     // -:d- (force repl io to be stdin/stdout since terminal isn't
     // -attached)
-    // debug_settings =
-    //     (debug_settings
-    //      & ~___DEBUG_SETTINGS_REPL_MASK)
-    //     | (___DEBUG_SETTINGS_REPL_STDIO
-    //        << ___DEBUG_SETTINGS_REPL_SHIFT);
+    debug_settings =
+        (debug_settings
+         & ~___DEBUG_SETTINGS_REPL_MASK)
+        | (___DEBUG_SETTINGS_REPL_STDIO
+           << ___DEBUG_SETTINGS_REPL_SHIFT);
     // -:da
     debug_settings =
         (debug_settings

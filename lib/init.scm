@@ -7,6 +7,10 @@
 ;; (include "util/remote-debugger/debuggee.scm")
 ;; (rdi-set-host! "localhost:20000")
 
+;; (thread-start!
+;;  (make-thread
+;;   (lambda () (##repl-debug-main))))
+
 ;; (define (thread-make-repl-channel-remote thread)
 ;;   (let ((i (open-input-string ""))
 ;;         (o (open-output-string)))
@@ -14,10 +18,6 @@
 
 ;; (set! ##thread-make-repl-channel
 ;;       thread-make-repl-channel-remote)
-
-;; (thread-start!
-;;  (make-thread
-;;   (lambda () (##repl-debug-main))))
 
 ;;;; dependencies
 
@@ -30,6 +30,7 @@
 (include "ffi/gl-util.scm")
 (include "ffi/osx.scm")
 (include "ffi/iphone.scm")
+(include "ffi/image.scm")
 (include "vectors.scm")
 (include "events.scm")
 

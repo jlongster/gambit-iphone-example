@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1A2DA1901047358B00D90110 /* jlongster.obj.gso in Resources */ = {isa = PBXBuildFile; fileRef = 1A2DA18F1047358B00D90110 /* jlongster.obj.gso */; };
-		1A3131C2107B05DA0032CD59 /* sky2.pnx in Resources */ = {isa = PBXBuildFile; fileRef = 1A3131C1107B05DA0032CD59 /* sky2.pnx */; };
 		1A4EBE0D0FDA21CD000F4C9F /* init_.c in Sources */ = {isa = PBXBuildFile; fileRef = 1A4EBE0C0FDA21CD000F4C9F /* init_.c */; };
 		1A53011D103E5A9700859416 /* sphere.obj.gso in Resources */ = {isa = PBXBuildFile; fileRef = 1A53011C103E5A9700859416 /* sphere.obj.gso */; };
 		1A5BC5CC102B80FA001FEDD9 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BC5C9102B80FA001FEDD9 /* sphere.obj */; };
 		1A5BC5CD102B80FA001FEDD9 /* mass.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BC5CA102B80FA001FEDD9 /* mass.obj */; };
 		1A5BC5CE102B80FA001FEDD9 /* mass.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BC5CB102B80FA001FEDD9 /* mass.mtl */; };
 		1A5BC5DA102D21E8001FEDD9 /* collision.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BC5D9102D21E8001FEDD9 /* collision.obj */; };
+		1A861A1410916B3D00706CC5 /* sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A861A1310916B3D00706CC5 /* sky.png */; };
+		1A861A8510916C0500706CC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A861A8410916C0500706CC5 /* CoreGraphics.framework */; };
 		1A8887FF1079A50A00E1E774 /* cow.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 1A8887FD1079A50A00E1E774 /* cow.mtl */; };
 		1A8888001079A50A00E1E774 /* cow.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1A8887FE1079A50A00E1E774 /* cow.obj */; };
 		1A8888031079A52100E1E774 /* sheep.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 1A8888011079A52100E1E774 /* sheep.mtl */; };
@@ -35,13 +36,14 @@
 
 /* Begin PBXFileReference section */
 		1A2DA18F1047358B00D90110 /* jlongster.obj.gso */ = {isa = PBXFileReference; lastKnownFileType = file; path = jlongster.obj.gso; sourceTree = "<group>"; };
-		1A3131C1107B05DA0032CD59 /* sky2.pnx */ = {isa = PBXFileReference; lastKnownFileType = file; name = sky2.pnx; path = "../../../projects/scheme/gambit-iphone-example/resources/sky2.pnx"; sourceTree = SOURCE_ROOT; };
 		1A4EBE0C0FDA21CD000F4C9F /* init_.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = init_.c; path = lib/init_.c; sourceTree = "<group>"; };
 		1A53011C103E5A9700859416 /* sphere.obj.gso */ = {isa = PBXFileReference; lastKnownFileType = file; path = sphere.obj.gso; sourceTree = "<group>"; };
 		1A5BC5C9102B80FA001FEDD9 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		1A5BC5CA102B80FA001FEDD9 /* mass.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mass.obj; sourceTree = "<group>"; };
 		1A5BC5CB102B80FA001FEDD9 /* mass.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mass.mtl; sourceTree = "<group>"; };
 		1A5BC5D9102D21E8001FEDD9 /* collision.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = collision.obj; sourceTree = "<group>"; };
+		1A861A1310916B3D00706CC5 /* sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky.png; sourceTree = "<group>"; };
+		1A861A8410916C0500706CC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1A8887FD1079A50A00E1E774 /* cow.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cow.mtl; path = "../../../projects/scheme/gambit-iphone-example/resources/cow.mtl"; sourceTree = SOURCE_ROOT; };
 		1A8887FE1079A50A00E1E774 /* cow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cow.obj; path = "../../../projects/scheme/gambit-iphone-example/resources/cow.obj"; sourceTree = SOURCE_ROOT; };
 		1A8888011079A52100E1E774 /* sheep.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sheep.mtl; path = "../../../projects/scheme/gambit-iphone-example/resources/sheep.mtl"; sourceTree = SOURCE_ROOT; };
@@ -72,6 +74,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
 				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
+				1A861A8510916C0500706CC5 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +92,7 @@
 		1A8BCDAE101A1BEA00DED70B /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				1A3131C1107B05DA0032CD59 /* sky2.pnx */,
+				1A861A1310916B3D00706CC5 /* sky.png */,
 				1A8888011079A52100E1E774 /* sheep.mtl */,
 				1A8888021079A52100E1E774 /* sheep.obj */,
 				1A8887FD1079A50A00E1E774 /* cow.mtl */,
@@ -128,6 +131,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A861A8410916C0500706CC5 /* CoreGraphics.framework */,
 				28FD15070DC6FC5B0079059D /* QuartzCore.framework */,
 				28FD14FF0DC6FC520079059D /* OpenGLES.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -192,7 +196,7 @@
 				1A8888001079A50A00E1E774 /* cow.obj in Resources */,
 				1A8888031079A52100E1E774 /* sheep.mtl in Resources */,
 				1A8888041079A52100E1E774 /* sheep.obj in Resources */,
-				1A3131C2107B05DA0032CD59 /* sky2.pnx in Resources */,
+				1A861A1410916B3D00706CC5 /* sky.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

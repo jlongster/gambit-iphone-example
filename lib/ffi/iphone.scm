@@ -13,10 +13,9 @@
 (c-define (register-view view) (UIView*) void "register_view" ""
   (current-view view))
 
-;;; WARNING: Do not use this function yet, it crashes for some reason
 (define UIView-bounds
   (c-lambda (UIView*) CGRect #<<end-c-code
-   CGRect *res = malloc(sizeof(CGRect));
+   CGRect *res = ___EXT(___alloc_rc(sizeof(CGRect)));
    *res = ___arg1.bounds;
    ___result_voidstar = res;
 end-c-code
@@ -54,10 +53,10 @@ end-c-code
 (define %%UITouch-location-y
   (c-lambda (UITouch* UIView*) int "___result = [___arg1 locationInView:___arg2].y;"))
 
-;;; WARNING: Do not use this function yet, it crashes for some reason
+;; TODO: Make UITouch-location use this one
 (define %%UITouch-location
   (c-lambda (UITouch* UIView*) CGPoint #<<end-c-code
-   CGPoint* res = malloc(sizeof(CGPoint));
+   CGPoint* res = ___EXT(___alloc_rc(sizeof(CGPoint)));
    *res = [___arg1 locationInView:___arg2];
    ___result_voidstar = res;
 end-c-code

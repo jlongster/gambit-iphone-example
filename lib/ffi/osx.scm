@@ -77,19 +77,17 @@ end-c-code
 
 ;;; CGRect
 
-;;; WARNING: Do not use this function yet, it crashes for some reason
 (define CGRect-origin
   (c-lambda (CGRect) CGPoint #<<end-c-code
-   CGPoint *res = malloc(sizeof(CGPoint));
+   CGPoint *res = ___EXT(___alloc_rc(sizeof(CGPoint)));
    *res = ___arg1.origin;
    ___result_voidstar = res;
 end-c-code
 ))
 
-;;; WARNING: Do not use this function yet, it crashes for some reason
 (define CGRect-size
   (c-lambda (CGRect) CGSize #<<end-c-code
-   CGSize *res = malloc(sizeof(CGSize));
+   CGSize *res = ___EXT(___alloc_rc(sizeof(CGSize)));
    *res = ___arg1.size;
    ___result_voidstar = res;
 end-c-code

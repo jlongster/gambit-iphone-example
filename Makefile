@@ -45,7 +45,7 @@ lib/graphics.o1: lib/graphics.scm
 
 app_name=tosser.app
 exe_name=tosser
-uuid=A328A13D-AFC6-45E2-8710-5068A69C7EA1
+uuid=6105AA5B-02C7-4250-9D68-4789C9EE0ECF
 deploy_path=~/Library/'Application Support/iPhone Simulator'/User/Applications/$(uuid)
 
 gcc=/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2
@@ -66,6 +66,7 @@ tosser.app: Info.plist app/main.m app/EAGLView.m lib/init_.c config
 	-mmacosx-version-min=10.5 \
 	-framework Foundation -framework UIKit \
 	-framework OpenGLES -framework QuartzCore \
+	-framework CoreGraphics \
 	-fvisibility=hidden -I/usr/local/include -D___LIBRARY -lgambc \
     -I/usr/local/Gambit-C/iPhoneSimulator3.1/include \
     -L/usr/local/Gambit-C/iPhoneSimulator3.1/lib \
