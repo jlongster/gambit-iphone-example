@@ -2,14 +2,14 @@
 ;;; Balls thrown up and pulled down by gravity (determined from
 ;;; accelerometer)
 
-(include "events#.scm")
-(include "obj-loader2.scm")
-(include "scene.scm")
-(include "physics.scm")
+(include "../events#.scm")
+(include "../obj-loader2.scm")
+(include "../scene.scm")
+(include "../physics.scm")
 
 ;;; resources
 
-(define sphere-mesh (obj-load (resource "resources/sphere") #t))
+(define sphere-mesh #f)
 
 ;;; throwing
 
@@ -70,6 +70,8 @@
 (define (init)
   (random-source-randomize! default-random-source)
 
+  (set! sphere-mesh (obj-load (local-resource "resources/sphere") #t))
+  
   ;; opengl
   (let* ((fov 40.)
          (aspect (/ (UIView-width (current-view))
@@ -91,12 +93,12 @@
   (glEnable GL_LIGHTING)
   (glEnable GL_LIGHT0)
   (glLightf GL_LIGHT0 GL_CONSTANT_ATTENUATION .6)
-  (glLightfv GL_LIGHT0 GL_AMBIENT (vector->GLfloat* (vector .15 .15 .15 1.)))
-  (glLightfv GL_LIGHT0 GL_POSITION (vector->GLfloat* (vector 25. 25. 0. 1.)))
-  (glLightfv GL_LIGHT0 GL_DIFFUSE (vector->GLfloat* (vector 1. 1. 1. 1.)))
+  (glLightfv GL_LIGHT0 GL_AMBIENT (vector->float-array (vector .15 .15 .15 1.)))
+  (glLightfv GL_LIGHT0 GL_POSITION (vector->float-array (vector 25. 25. 0. 1.)))
+  (glLightfv GL_LIGHT0 GL_DIFFUSE (vector->float-array (vector 1. 1. 1. 1.)))
 
   (glFogx GL_FOG_MODE GL_EXP2)
-  (glFogfv GL_FOG_COLOR (vector->GLfloat* (vector 0. 0. 0. 1.)))
+  (glFogfv GL_FOG_COLOR (vector->float-array (vector 0. 0. 0. 1.)))
   (glFogf GL_FOG_DENSITY .01)
   (glFogf GL_FOG_START 1.)
   (glFogf GL_FOG_END 1000.)

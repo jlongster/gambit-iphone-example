@@ -4,12 +4,12 @@
 
 ;;;; debugger
 
-;; (include "util/remote-debugger/debuggee.scm")
-;; (rdi-set-host! "localhost:20000")
+(include "util/remote-debugger/debuggee.scm")
+(rdi-set-host! "localhost:20000")
 
-;; (thread-start!
-;;  (make-thread
-;;   (lambda () (##repl-debug-main))))
+(thread-start!
+ (make-thread
+  (lambda () (##repl-debug-main))))
 
 ;; (define (thread-make-repl-channel-remote thread)
 ;;   (let ((i (open-input-string ""))
@@ -23,9 +23,7 @@
 
 (include "resource.scm")
 (include "util/srfi-1.scm")
-
 (include "ffi/ffi.scm")
-(include "ffi/lodepng/lodepng.scm")
 (include "ffi/gl.scm")
 (include "ffi/gl-util.scm")
 (include "ffi/osx.scm")
@@ -34,8 +32,8 @@
 (include "vectors.scm")
 (include "events.scm")
 
-;;(load (local-resource "lib/apps/animattack"))
-(include "apps/animattack.scm")
+(load (local-resource "lib/apps/app5"))
+;;(include "apps/app5.scm")
 
 ;; ;;;; c interface
 
