@@ -7,30 +7,6 @@
 		path = "/Users/james/projects/scheme/gambit-iphone-example/app/main.m";
 		sourceTree = "<absolute>";
 	};
-	1A1D5ADB109A369C00ED980E /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 1A861A1310916B3D00706CC5 /* sky.png */;
-	};
-	1A1D5ADC109A369C00ED980E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A8888011079A52100E1E774 /* sheep.mtl */;
-		name = "sheep.mtl: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 514;
-		vrLoc = 0;
-	};
-	1A1D5B46109BFEF400ED980E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1A8888021079A52100E1E774 /* sheep.obj */;
-		name = "sheep.obj: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1223;
-		vrLoc = 0;
-	};
 	1A3B7340101900D300887149 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1A5E086410119543006647CF /* EAGLView.m */;
@@ -63,29 +39,6 @@
 		lastKnownFileType = sourcecode.c.objc;
 		name = EAGLView.m;
 		path = "/Users/james/projects/scheme/gambit-iphone-example/app/EAGLView.m";
-		sourceTree = "<absolute>";
-	};
-	1A861A1310916B3D00706CC5 /* sky.png */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = image.png;
-		name = sky.png;
-		path = "/Users/james/projects/scheme/gambit-iphone-example/resources/sky.png";
-		sourceTree = "<absolute>";
-	};
-	1A8888011079A52100E1E774 /* sheep.mtl */ = {
-		isa = PBXFileReference;
-		fileEncoding = 4;
-		lastKnownFileType = text;
-		name = sheep.mtl;
-		path = "/Users/james/projects/scheme/gambit-iphone-example/resources/sheep.mtl";
-		sourceTree = "<absolute>";
-	};
-	1A8888021079A52100E1E774 /* sheep.obj */ = {
-		isa = PBXFileReference;
-		fileEncoding = 4;
-		lastKnownFileType = text;
-		name = sheep.obj;
-		path = "/Users/james/projects/scheme/gambit-iphone-example/resources/sheep.obj";
 		sourceTree = "<absolute>";
 	};
 	1A8888681079AB6D00E1E774 /* PlistBookmark */ = {
@@ -121,9 +74,9 @@
 	};
 	1AAF6B470FD9A049000698DA /* init.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {936, 756054}}";
-			sepNavSelRange = "{106368, 0}";
-			sepNavVisRange = "{106218, 298}";
+			sepNavIntBoundsRect = "{{0, 0}, {835, 741910}}";
+			sepNavSelRange = "{16438, 0}";
+			sepNavVisRange = "{15922, 1480}";
 			sepNavWindowFrame = "{{75, 0}, {894, 878}}";
 		};
 	};
@@ -215,7 +168,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 1ACA2F310FD4E7FC005851FB /* tosser */;
-		activeSDKPreference = iphonesimulator3.1;
+		activeSDKPreference = iphonesimulator3.1.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* tosser */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* tosser */,
@@ -309,13 +262,10 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 279903404;
-			PBXWorkspaceStateSaveDate = 279903404;
+			PBXPerProjectTemplateStateSaveDate = 286477125;
+			PBXWorkspaceStateSaveDate = 286477125;
 		};
 		perUserProjectItems = {
-			1A1D5ADB109A369C00ED980E = 1A1D5ADB109A369C00ED980E /* PBXBookmark */;
-			1A1D5ADC109A369C00ED980E = 1A1D5ADC109A369C00ED980E /* PBXTextBookmark */;
-			1A1D5B46109BFEF400ED980E = 1A1D5B46109BFEF400ED980E /* PBXTextBookmark */;
 			1A3B7340101900D300887149 = 1A3B7340101900D300887149 /* PBXTextBookmark */;
 			1A5300D6103E52D200859416 = 1A5300D6103E52D200859416 /* PBXTextBookmark */;
 			1A8888681079AB6D00E1E774 = 1A8888681079AB6D00E1E774 /* PlistBookmark */;

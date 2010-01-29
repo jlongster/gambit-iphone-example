@@ -11,14 +11,6 @@
  (make-thread
   (lambda () (##repl-debug-main))))
 
-;; (define (thread-make-repl-channel-remote thread)
-;;   (let ((i (open-input-string ""))
-;;         (o (open-output-string)))
-;;     (##make-repl-channel-ports i o)))
-
-;; (set! ##thread-make-repl-channel
-;;       thread-make-repl-channel-remote)
-
 ;;;; dependencies
 
 (include "resource.scm")

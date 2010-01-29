@@ -233,13 +233,13 @@
 					"-fno-common",
 				);
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneOS3.1/lib",
+					"-L/usr/local/Gambit-C/iPhoneOS-3.1.2/lib",
 					"-lgambc",
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS3.1/include";
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneOS-3.1.2/include";
 			};
 			name = "Debug iPhone";
 		};
@@ -310,13 +310,13 @@
 					"-fno-common",
 				);
 				OTHER_LDFLAGS = (
-					"-L/usr/local/Gambit-C/iPhoneSimulator3.1/lib",
+					"-L/usr/local/Gambit-C/iPhoneSimulator-3.1.2/lib",
 					"-lgambc",
 				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphonesimulator3.1;
-				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator3.1/include";
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Gambit-C/iPhoneSimulator-3.1.2/include";
 			};
 			name = Debug;
 		};

@@ -99,10 +99,19 @@
   (glEnableClientState GL_VERTEX_ARRAY))
 
 (define (init)
+  (glMatrixMode GL_PROJECTION)
+  (glLoadIdentity)
+  (ortho 0.0 1.0 1.0 0.0 -1.0 1.0)
+  (glMatrixMode GL_MODELVIEW)
+  (glLoadIdentity)
+  
   (glEnable GL_BLEND)
   (glBlendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA))
 
 (define (render)
+  (glClearColor 0. 0. 1. 1.)
+  (glClear (bitwise-ior GL_COLOR_BUFFER_BIT GL_DEPTH_BUFFER_BIT))
+
   (select-view)
   (select-geometry)
 
