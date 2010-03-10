@@ -5,7 +5,7 @@
 ;;;; debugger
 
 (include "util/remote-debugger/debuggee.scm")
-(rdi-set-host! "localhost:20000")
+(make-rdi-host "localhost:20000")
 
 (thread-start!
  (make-thread

@@ -211,7 +211,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					564,
+					394,
 					20,
 					48,
 					43,
@@ -262,15 +262,15 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 286477125;
-			PBXWorkspaceStateSaveDate = 286477125;
+			PBXPerProjectTemplateStateSaveDate = 287001357;
+			PBXWorkspaceStateSaveDate = 287001357;
 		};
 		perUserProjectItems = {
-			1A3B7340101900D300887149 = 1A3B7340101900D300887149 /* PBXTextBookmark */;
-			1A5300D6103E52D200859416 = 1A5300D6103E52D200859416 /* PBXTextBookmark */;
-			1A8888681079AB6D00E1E774 = 1A8888681079AB6D00E1E774 /* PlistBookmark */;
-			1A8888691079AB6D00E1E774 = 1A8888691079AB6D00E1E774 /* PBXTextBookmark */;
-			1A9614811012282700A54EBA = 1A9614811012282700A54EBA /* PBXTextBookmark */;
+			1A3B7340101900D300887149 /* PBXTextBookmark */ = 1A3B7340101900D300887149 /* PBXTextBookmark */;
+			1A5300D6103E52D200859416 /* PBXTextBookmark */ = 1A5300D6103E52D200859416 /* PBXTextBookmark */;
+			1A8888681079AB6D00E1E774 /* PlistBookmark */ = 1A8888681079AB6D00E1E774 /* PlistBookmark */;
+			1A8888691079AB6D00E1E774 /* PBXTextBookmark */ = 1A8888691079AB6D00E1E774 /* PBXTextBookmark */;
+			1A9614811012282700A54EBA /* PBXTextBookmark */ = 1A9614811012282700A54EBA /* PBXTextBookmark */;
 		};
 		sourceControlManager = 1ACA2F450FD4E803005851FB /* Source Control */;
 		userBuildSettings = {
